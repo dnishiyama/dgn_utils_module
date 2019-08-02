@@ -11,7 +11,7 @@ setup(
     # Needed for dependencies
     install_requires=['pymysql'],
     # *strongly* suggested for sharing
-    version='0.2',
+    version='0.3.0',
     # The license can be anything you like
     license='MIT',
     description='package to maintain commonly used functions',

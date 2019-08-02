@@ -9,7 +9,7 @@ setup(
     # Needed to actually package something
     packages=['dgn_utils'],
     # Needed for dependencies
-    install_requires=['json, os, nbslack, pymysql, re, logging, pdb, enum, datetime'],
+    install_requires=['json', 'os', 'nbslack', 'pymysql', 're', 'logging', 'pdb', 'enum', 'datetime'],
     # *strongly* suggested for sharing
     version='0.1',
     # The license can be anything you like

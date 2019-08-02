@@ -2,12 +2,12 @@ from setuptools import setup
 
 setup(
     # Needed to silence warnings (and to be a worthwhile package)
-    name='dgn-utils',
+    name='dgnutils',
     url='https://github.com/dnishiyama/run_commands/dgn_utils_module',
     author='Declan Nishiyama',
     author_email='dnishiyama@gmail.com',
     # Needed to actually package something
-    packages=['dgn-utils'],
+    packages=['dgnutils'],
     # Needed for dependencies
     install_requires=['pymysql'],
     # *strongly* suggested for sharing

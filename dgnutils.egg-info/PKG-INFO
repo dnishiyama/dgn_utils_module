@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: dgnutils
+Version: 0.3.1
+Summary: package to maintain commonly used functions
+Home-page: https://github.com/dnishiyama/run_commands/dgn_utils_module
+Author: Declan Nishiyama
+Author-email: dnishiyama@gmail.com
+License: MIT
+Description: UNKNOWN
+Platform: UNKNOWN

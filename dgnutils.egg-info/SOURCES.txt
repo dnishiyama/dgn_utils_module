@@ -1,0 +1,7 @@
+setup.py
+dgnutils/__init__.py
+dgnutils.egg-info/PKG-INFO
+dgnutils.egg-info/SOURCES.txt
+dgnutils.egg-info/dependency_links.txt
+dgnutils.egg-info/requires.txt
+dgnutils.egg-info/top_level.txt

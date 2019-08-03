@@ -1,10 +1,18 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.1
 Name: dgnutils
-Version: 0.3.1
-Summary: package to maintain commonly used functions
-Home-page: https://github.com/dnishiyama/run_commands/dgn_utils_module
+Version: 0.3.3
+Summary: frequently used python functions
+Home-page: https://github.com/dnishiyama
 Author: Declan Nishiyama
 Author-email: dnishiyama@gmail.com
 License: MIT
-Description: UNKNOWN
+Description: Readme file
+        
+        
 Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Environment :: Other Environment
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python

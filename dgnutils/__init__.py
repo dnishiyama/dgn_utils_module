@@ -2,8 +2,6 @@ import json, os, nbslack, pymysql, re, logging, pdb
 from enum import Enum, auto
 from datetime import timedelta, date, datetime
 from IPython.display import clear_output
-test=1
-print('Loading new dgnutils!')
 
 #Tracing
 # pdb.set_trace()

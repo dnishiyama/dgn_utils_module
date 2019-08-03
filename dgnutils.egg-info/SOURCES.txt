@@ -1,7 +1,15 @@
+AUTHORS
+ChangeLog
+README.txt
+setup.cfg
 setup.py
 dgnutils/__init__.py
 dgnutils.egg-info/PKG-INFO
 dgnutils.egg-info/SOURCES.txt
 dgnutils.egg-info/dependency_links.txt
-dgnutils.egg-info/requires.txt
+dgnutils.egg-info/entry_points.txt
+dgnutils.egg-info/not-zip-safe
+dgnutils.egg-info/pbr.json
 dgnutils.egg-info/top_level.txt
+dist/dgnutils-0.3.1-py3.6.egg
+dist/dgnutils-0.3.1-py3.7.egg

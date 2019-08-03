@@ -1,0 +1,34 @@
+CHANGES
+=======
+
+v0.3.3
+------
+
+* Switched to pbr packaging
+
+v0.3.1
+------
+
+* Changed name to remove dashes and underscores
+* updated name in setup.py to match real name
+* updated setup.py
+* changed name to use dash
+* Updated tag and version in setup.py
+
+v0.3.0
+------
+
+* Moved submodule into init.py to simplify importing
+
+v0.2
+----
+
+* Updated to v0.2
+
+v0.1
+----
+
+* reduced install\_requires string
+* restructured directory with dgn\_utils.py inside directory
+* fixed setup.py syntax for install\_requires
+* first commit

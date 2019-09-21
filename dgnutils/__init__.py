@@ -1,17 +1,32 @@
-import json, os, nbslack, pymysql, re, logging, pdb
+import json, os, nbslack, pymysql, re, logging, pdb, pytz
 from enum import Enum, auto
 from datetime import timedelta, date, datetime
 from IPython.display import clear_output
 
+print('9/20/19 dgnutils update loaded!')
+
 #Tracing
-# pdb.set_trace()
+#pdb.set_trace()
 
 #########################################  
 ########### UTILITY FUNCTIONS ###########
 #########################################
 
 ########### TIME CONVERSIONS ############
+# UNIX TIME
+def days_ago(days=0): return datetime.now(tz=pytz.timezone('US/Eastern')) - timedelta(days=days)
+def current_unix(): return datetime_to_unix(datetime.now(tz=pytz.utc))
+def datetime_to_unix(dt): 
+    if not dt.tzinfo: raise Exception("datetime must have tzinfo. Use datetime.now(tz=pytz.utc)")
+    return int(dt.astimezone(pytz.utc).timestamp())
+def unix_to_datetime(unix): return datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc)
+def unix_to_string(unix, string_format="%Y-%m-%dT%H:%M:%S"): return datetime.strftime(datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc), string_format)
+def string_to_unix(string, string_format="%Y-%m-%d"): 
+    """ Assumes that the string is local time """
+    return datetime_to_unix(datetime.strptime(string, string_format).astimezone(pytz.utc))
+
 def created_at_conv(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')
+def created_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z')
 def mailchimp_conv(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')
 def conv_time_1(time: str): return datetime.strptime(time, '%Y-%m-%d')
 def conv_time_2(time:str):
@@ -37,6 +52,16 @@ def log_level(level=None):
     elif level in ['c', 'critical']: logging.getLogger().setLevel(logging.CRITICAL)
     elif level in ['f', 'fatal']: logging.getLogger().setLevel(logging.FATAL)
     else: raise Exception('Unrecognized log level', level)
+
+########### TRACKING FUNCTIONS #############
+def dgn_enum(_list:list):
+    """
+    Use this function in the place of enumerate() to print the status
+    """
+    for i,l in enumerate(_list):
+        print(f'Progress {i+1}/{len(_list)}', end='\r')
+        yield l
+
 
 #########################################  
 ############ MYSQL FUNCTIONS ############

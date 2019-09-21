@@ -1,0 +1,74 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Enum	build/lib/dgnutils/__init__.py	/^from enum import Enum, auto$/;"	i
+Enum	dgnutils/__init__.py	/^from enum import Enum, auto$/;"	i
+array_insert	build/lib/dgnutils/__init__.py	/^def array_insert(self, data_list:list, columns:list, table:str):$/;"	f
+array_insert	dgnutils/__init__.py	/^def array_insert(self, data_list:list, columns:list, table:str):$/;"	f
+auto	build/lib/dgnutils/__init__.py	/^from enum import Enum, auto$/;"	i
+auto	dgnutils/__init__.py	/^from enum import Enum, auto$/;"	i
+clear_output	build/lib/dgnutils/__init__.py	/^from IPython.display import clear_output$/;"	i
+clear_output	dgnutils/__init__.py	/^from IPython.display import clear_output$/;"	i
+connect	build/lib/dgnutils/__init__.py	/^def connect(db='ck_info', **kwargs):$/;"	f
+connect	dgnutils/__init__.py	/^def connect(db='ck_info', **kwargs):$/;"	f
+conv_created_at_to_subscribe_date	build/lib/dgnutils/__init__.py	/^def conv_created_at_to_subscribe_date(created_at:str): return created_at_conv(created_at); # Legacy function$/;"	f
+conv_created_at_to_subscribe_date	dgnutils/__init__.py	/^def conv_created_at_to_subscribe_date(created_at:str): return created_at_conv(created_at); # Legacy function$/;"	f
+conv_time_1	build/lib/dgnutils/__init__.py	/^def conv_time_1(time: str): return datetime.strptime(time, '%Y-%m-%d')$/;"	f
+conv_time_1	dgnutils/__init__.py	/^def conv_time_1(time: str): return datetime.strptime(time, '%Y-%m-%d')$/;"	f
+conv_time_2	build/lib/dgnutils/__init__.py	/^def conv_time_2(time:str):$/;"	f
+conv_time_2	dgnutils/__init__.py	/^def conv_time_2(time:str):$/;"	f
+created_at_conv	build/lib/dgnutils/__init__.py	/^def created_at_conv(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')$/;"	f
+created_at_conv	dgnutils/__init__.py	/^def created_at_conv(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')$/;"	f
+created_to_dt	dgnutils/__init__.py	/^def created_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z')$/;"	f
+current_unix	dgnutils/__init__.py	/^def current_unix(): return datetime_to_unix(datetime.now(tz=pytz.utc))$/;"	f
+date	build/lib/dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+date	dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+datetime	build/lib/dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+datetime	dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+datetime_to_unix	dgnutils/__init__.py	/^def datetime_to_unix(dt): $/;"	f
+days_ago	dgnutils/__init__.py	/^def days_ago(days=0): return datetime.now(tz=pytz.timezone('US\/Eastern')) - timedelta(days=days)$/;"	f
+dgn_enum	dgnutils/__init__.py	/^def dgn_enum(_list:list):$/;"	f
+dict_insert	build/lib/dgnutils/__init__.py	/^def dict_insert(self, data_list:list, table:str):$/;"	f
+dict_insert	dgnutils/__init__.py	/^def dict_insert(self, data_list:list, table:str):$/;"	f
+e	build/lib/dgnutils/__init__.py	/^def e(self, sql_stmt, values=None, many=False):$/;"	f
+e	dgnutils/__init__.py	/^def e(self, sql_stmt, values=None, many=False):$/;"	f
+get_json_columns	build/lib/dgnutils/__init__.py	/^def get_json_columns(dict_, columns=["id"]):$/;"	f
+get_json_columns	dgnutils/__init__.py	/^def get_json_columns(dict_, columns=["id"]):$/;"	f
+json	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+json	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+log_level	build/lib/dgnutils/__init__.py	/^def log_level(level=None):$/;"	f
+log_level	dgnutils/__init__.py	/^def log_level(level=None):$/;"	f
+logging	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+logging	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+mailchimp_conv	build/lib/dgnutils/__init__.py	/^def mailchimp_conv(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')$/;"	f
+mailchimp_conv	dgnutils/__init__.py	/^def mailchimp_conv(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')$/;"	f
+mysql_array	build/lib/dgnutils/__init__.py	/^def mysql_array(array:list):$/;"	f
+mysql_array	dgnutils/__init__.py	/^def mysql_array(array:list):$/;"	f
+nbslack	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+nbslack	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+notify	build/lib/dgnutils/__init__.py	/^def notify(text='Work'): nbslack.notify(f"{text}")$/;"	f
+notify	dgnutils/__init__.py	/^def notify(text='Work'): nbslack.notify(f"{text}")$/;"	f
+os	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+os	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+pbr	setup.py	/^    pbr=True,$/;"	v
+pdb	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+pdb	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+print_array	build/lib/dgnutils/__init__.py	/^def print_array(array:list):$/;"	f
+print_array	dgnutils/__init__.py	/^def print_array(array:list):$/;"	f
+pymysql	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+pymysql	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+pytz	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+quick_info	build/lib/dgnutils/__init__.py	/^def quick_info(self, table='subscriber_data', **kwargs):$/;"	f
+quick_info	dgnutils/__init__.py	/^def quick_info(self, table='subscriber_data', **kwargs):$/;"	f
+re	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+re	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+setup	setup.py	/^from setuptools import setup$/;"	i
+setup_requires	setup.py	/^    setup_requires=['pbr'],$/;"	v
+string_to_unix	dgnutils/__init__.py	/^def string_to_unix(string, string_format="%Y-%m-%d"): $/;"	f
+timedelta	build/lib/dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+timedelta	dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+unix_to_datetime	dgnutils/__init__.py	/^def unix_to_datetime(unix): return datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc)$/;"	f
+unix_to_string	dgnutils/__init__.py	/^def unix_to_string(unix, string_format="%Y-%m-%dT%H:%M:%S"): return datetime.strftime(datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc), string_format)$/;"	f

@@ -3,7 +3,7 @@ from enum import Enum, auto
 from datetime import timedelta, date, datetime
 from IPython.display import clear_output
 
-print('9/20/19 dgnutils update loaded!')
+print('01/27/20 dgnutils update loaded!')
 
 #Tracing
 #pdb.set_trace()
@@ -13,34 +13,49 @@ print('9/20/19 dgnutils update loaded!')
 #########################################
 
 ########### TIME CONVERSIONS ############
+def time_days_ago(days=0): return datetime.now(tz=pytz.timezone('US/Eastern')) - timedelta(days=days)
+def time_ck_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%d')
+def time_dt_to_ck(dt): return datetime.strftime(dt, '%Y-%m-%d')
+def time_created_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z')
+def time_created_to_ck(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')
+def time_mailchimp_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S')
+def time_mailchimp_to_ck(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')
+
 # UNIX TIME
-def days_ago(days=0): return datetime.now(tz=pytz.timezone('US/Eastern')) - timedelta(days=days)
-def current_unix(): return datetime_to_unix(datetime.now(tz=pytz.utc))
-def datetime_to_unix(dt): 
+def time_current_unix(): return datetime_to_unix(datetime.now(tz=pytz.utc))
+def time_dt_to_unix(dt): 
     if not dt.tzinfo: raise Exception("datetime must have tzinfo. Use datetime.now(tz=pytz.utc)")
     return int(dt.astimezone(pytz.utc).timestamp())
-def unix_to_datetime(unix): return datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc)
-def unix_to_string(unix, string_format="%Y-%m-%dT%H:%M:%S"): return datetime.strftime(datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc), string_format)
-def string_to_unix(string, string_format="%Y-%m-%d"): 
+def time_unix_to_dt(unix): return datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc)
+def time_unix_to_str(unix, string_format="%Y-%m-%dT%H:%M:%S"): return datetime.strftime(datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc), string_format)
+def time_str_to_unix(string, string_format="%Y-%m-%d"): 
     """ Assumes that the string is local time """
     return datetime_to_unix(datetime.strptime(string, string_format).astimezone(pytz.utc))
 
-def created_at_conv(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')
-def created_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z')
-def mailchimp_conv(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')
-def conv_time_1(time: str): return datetime.strptime(time, '%Y-%m-%d')
-def conv_time_2(time:str):
-    """ Convert a string from mailchimp (probably excel) into the format stored in ConvertKit """
-    return datetime.strptime(time, '%m/%d/%y %H:%M').strftime('%Y-%m-%dT%H:%M:%S.000Z')
-def conv_created_at_to_subscribe_date(created_at:str): return created_at_conv(created_at); # Legacy function
-    
-def get_json_columns(dict_, columns=["id"]):
-    return json.dumps({k:v for k,v in dict_.items() if k in columns})
+def daterange(start_date, end_date):
+    for n in range(int ((end_date - start_date).days)):
+        yield start_date + timedelta(n)
+
+#Legacy
+def conv_time_1(time: str): logging.warning('conv_time_1 Deprecated; Use time_ck_to_dt'); return time_ck_to_dt(time);
+def days_ago(days=0): logging.warning('Deprecated; Use prefix time_'); return time_days_ago(days=days)
+def current_unix(): logging.warning('current_unix Deprecated; Use prefix time_'); return time_current_unix();
+def datetime_to_unix(dt): logging.warning('datetime_to_unix Deprecated; Use time_dt_to_unix'); return time_dt_to_unix(dt)
+def unix_to_datetime(unix): logging.warning('unix_to_datetime Deprecated; Use time_unit_to_dt'); return time_unix_to_dt(unix)
+def unix_to_string(unix, string_format="%Y-%m-%dT%H:%M:%S"): logging.warning('unix_to_string Deprecated; Use time_unix_to_str'); return time_unix_to_str(unix, string_format=string_format)
+def string_to_unix(string, string_format="%Y-%m-%d"): logging.warning('string_to_unix Deprecated; Use time_str_to_unix'); return time_str_to_unix(string, string_format=string_format)
+def created_to_dt(time: str): logging.warning('created_to_dt Deprecated; Use prefix time_'); return time_created_to_dt(time);
+def created_at_conv(time: str): logging.warning('created_at_conv Deprecated; Use time_created_to_ck'); return time_created_to_ck(time);
+def mailchimp_conv(time: str): logging.warning('mailchimp_conv Deprecated; Use time_ck_to_dt'); return time_mailchimp_to_ck
 
 ########### SLACK FUNCTIONS #############
 # Slack notification code
-nbslack.notifying('dnishiyama', os.environ['SLACK_WEBHOOK'], error_handle=False)
-def notify(text='Work'): nbslack.notify(f"{text}")
+try:
+	nbslack.notifying('dnishiyama', os.environ['SLACK_WEBHOOK'], error_handle=False)
+	def notify(text='Work'): nbslack.notify(f"{text}")
+except: 
+	logging.warn('Unable to load slack webhook')
+	def notify(text=None): return
 
 ########### LOGGING FUNCTIONS #############
 def log_level(level=None):
@@ -63,6 +78,10 @@ def dgn_enum(_list:list):
         yield l
 
 
+########### OTHER FUNCTIONS #############
+def get_json_columns(dict_, columns=["id"]):
+    return json.dumps({k:v for k,v in dict_.items() if k in columns})
+
 #########################################  
 ############ MYSQL FUNCTIONS ############
 #########################################
@@ -78,7 +97,7 @@ def connect(db='ck_info', **kwargs):
     password = os.environ['RDS_CK_PASSWORD'] if 'password' not in kwargs else kwargs['password']
     cursorclass = pymysql.cursors.DictCursor if 'cursorclass' not in kwargs else kwargs['cursorclass']
 
-    conn = pymysql.connect(user=user, password=password, host=host, database=database, cursorclass=cursorclass)
+    conn = pymysql.connect(user=user, password=password, host=host, database=database, cursorclass=cursorclass)#, ssl_disabled=True)
     cursor = conn.cursor(); cursor.execute('SET NAMES utf8mb4;')
     return conn, cursor
 

@@ -15,21 +15,20 @@ clear_output	dgnutils/__init__.py	/^from IPython.display import clear_output$/;"
 connect	build/lib/dgnutils/__init__.py	/^def connect(db='ck_info', **kwargs):$/;"	f
 connect	dgnutils/__init__.py	/^def connect(db='ck_info', **kwargs):$/;"	f
 conv_created_at_to_subscribe_date	build/lib/dgnutils/__init__.py	/^def conv_created_at_to_subscribe_date(created_at:str): return created_at_conv(created_at); # Legacy function$/;"	f
-conv_created_at_to_subscribe_date	dgnutils/__init__.py	/^def conv_created_at_to_subscribe_date(created_at:str): return created_at_conv(created_at); # Legacy function$/;"	f
 conv_time_1	build/lib/dgnutils/__init__.py	/^def conv_time_1(time: str): return datetime.strptime(time, '%Y-%m-%d')$/;"	f
-conv_time_1	dgnutils/__init__.py	/^def conv_time_1(time: str): return datetime.strptime(time, '%Y-%m-%d')$/;"	f
+conv_time_1	dgnutils/__init__.py	/^def conv_time_1(time: str): logging.warning('conv_time_1 Deprecated; Use time_ck_to_dt'); return time_ck_to_dt(time);$/;"	f
 conv_time_2	build/lib/dgnutils/__init__.py	/^def conv_time_2(time:str):$/;"	f
-conv_time_2	dgnutils/__init__.py	/^def conv_time_2(time:str):$/;"	f
 created_at_conv	build/lib/dgnutils/__init__.py	/^def created_at_conv(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')$/;"	f
-created_at_conv	dgnutils/__init__.py	/^def created_at_conv(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')$/;"	f
-created_to_dt	dgnutils/__init__.py	/^def created_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z')$/;"	f
-current_unix	dgnutils/__init__.py	/^def current_unix(): return datetime_to_unix(datetime.now(tz=pytz.utc))$/;"	f
+created_at_conv	dgnutils/__init__.py	/^def created_at_conv(time: str): logging.warning('created_at_conv Deprecated; Use time_created_to_ck'); return time_created_to_ck(time);$/;"	f
+created_to_dt	dgnutils/__init__.py	/^def created_to_dt(time: str): logging.warning('created_to_dt Deprecated; Use prefix time_'); return time_created_to_dt(time);$/;"	f
+current_unix	dgnutils/__init__.py	/^def current_unix(): logging.warning('current_unix Deprecated; Use prefix time_'); return time_current_unix();$/;"	f
 date	build/lib/dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
 date	dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+daterange	dgnutils/__init__.py	/^def daterange(start_date, end_date):$/;"	f
 datetime	build/lib/dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
 datetime	dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
-datetime_to_unix	dgnutils/__init__.py	/^def datetime_to_unix(dt): $/;"	f
-days_ago	dgnutils/__init__.py	/^def days_ago(days=0): return datetime.now(tz=pytz.timezone('US\/Eastern')) - timedelta(days=days)$/;"	f
+datetime_to_unix	dgnutils/__init__.py	/^def datetime_to_unix(dt): logging.warning('datetime_to_unix Deprecated; Use time_dt_to_unix'); return time_dt_to_unix(dt)$/;"	f
+days_ago	dgnutils/__init__.py	/^def days_ago(days=0): logging.warning('Deprecated; Use prefix time_'); return time_days_ago(days=days)$/;"	f
 dgn_enum	dgnutils/__init__.py	/^def dgn_enum(_list:list):$/;"	f
 dict_insert	build/lib/dgnutils/__init__.py	/^def dict_insert(self, data_list:list, table:str):$/;"	f
 dict_insert	dgnutils/__init__.py	/^def dict_insert(self, data_list:list, table:str):$/;"	f
@@ -44,13 +43,14 @@ log_level	dgnutils/__init__.py	/^def log_level(level=None):$/;"	f
 logging	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
 logging	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
 mailchimp_conv	build/lib/dgnutils/__init__.py	/^def mailchimp_conv(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')$/;"	f
-mailchimp_conv	dgnutils/__init__.py	/^def mailchimp_conv(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')$/;"	f
+mailchimp_conv	dgnutils/__init__.py	/^def mailchimp_conv(time: str): logging.warning('mailchimp_conv Deprecated; Use time_ck_to_dt'); return time_mailchimp_to_ck$/;"	f
 mysql_array	build/lib/dgnutils/__init__.py	/^def mysql_array(array:list):$/;"	f
 mysql_array	dgnutils/__init__.py	/^def mysql_array(array:list):$/;"	f
 nbslack	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
 nbslack	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
 notify	build/lib/dgnutils/__init__.py	/^def notify(text='Work'): nbslack.notify(f"{text}")$/;"	f
-notify	dgnutils/__init__.py	/^def notify(text='Work'): nbslack.notify(f"{text}")$/;"	f
+notify	dgnutils/__init__.py	/^	def notify(text='Work'): nbslack.notify(f"{text}")$/;"	f	function:mailchimp_conv
+notify	dgnutils/__init__.py	/^	def notify(text=None): return$/;"	f
 os	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
 os	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
 pbr	setup.py	/^    pbr=True,$/;"	v
@@ -67,8 +67,20 @@ re	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, loggi
 re	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
 setup	setup.py	/^from setuptools import setup$/;"	i
 setup_requires	setup.py	/^    setup_requires=['pbr'],$/;"	v
-string_to_unix	dgnutils/__init__.py	/^def string_to_unix(string, string_format="%Y-%m-%d"): $/;"	f
+string_to_unix	dgnutils/__init__.py	/^def string_to_unix(string, string_format="%Y-%m-%d"): logging.warning('string_to_unix Deprecated; Use time_str_to_unix'); return time_str_to_unix(string, string_format=string_format)$/;"	f
+time_ck_to_dt	dgnutils/__init__.py	/^def time_ck_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%d')$/;"	f
+time_created_to_ck	dgnutils/__init__.py	/^def time_created_to_ck(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')$/;"	f
+time_created_to_dt	dgnutils/__init__.py	/^def time_created_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z')$/;"	f
+time_current_unix	dgnutils/__init__.py	/^def time_current_unix(): return datetime_to_unix(datetime.now(tz=pytz.utc))$/;"	f
+time_days_ago	dgnutils/__init__.py	/^def time_days_ago(days=0): return datetime.now(tz=pytz.timezone('US\/Eastern')) - timedelta(days=days)$/;"	f
+time_dt_to_ck	dgnutils/__init__.py	/^def time_dt_to_ck(dt): return datetime.strftime(dt, '%Y-%m-%d')$/;"	f
+time_dt_to_unix	dgnutils/__init__.py	/^def time_dt_to_unix(dt): $/;"	f
+time_mailchimp_to_ck	dgnutils/__init__.py	/^def time_mailchimp_to_ck(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')$/;"	f
+time_mailchimp_to_dt	dgnutils/__init__.py	/^def time_mailchimp_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S')$/;"	f
+time_str_to_unix	dgnutils/__init__.py	/^def time_str_to_unix(string, string_format="%Y-%m-%d"): $/;"	f
+time_unix_to_dt	dgnutils/__init__.py	/^def time_unix_to_dt(unix): return datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc)$/;"	f
+time_unix_to_str	dgnutils/__init__.py	/^def time_unix_to_str(unix, string_format="%Y-%m-%dT%H:%M:%S"): return datetime.strftime(datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc), string_format)$/;"	f
 timedelta	build/lib/dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
 timedelta	dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
-unix_to_datetime	dgnutils/__init__.py	/^def unix_to_datetime(unix): return datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc)$/;"	f
-unix_to_string	dgnutils/__init__.py	/^def unix_to_string(unix, string_format="%Y-%m-%dT%H:%M:%S"): return datetime.strftime(datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc), string_format)$/;"	f
+unix_to_datetime	dgnutils/__init__.py	/^def unix_to_datetime(unix): logging.warning('unix_to_datetime Deprecated; Use time_unit_to_dt'); return time_unix_to_dt(unix)$/;"	f
+unix_to_string	dgnutils/__init__.py	/^def unix_to_string(unix, string_format="%Y-%m-%dT%H:%M:%S"): logging.warning('unix_to_string Deprecated; Use time_unix_to_str'); return time_unix_to_str(unix, string_format=string_format)$/;"	f

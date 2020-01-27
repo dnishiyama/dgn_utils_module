@@ -3,6 +3,7 @@ ChangeLog
 README.txt
 setup.cfg
 setup.py
+tags
 dgnutils/__init__.py
 dgnutils.egg-info/PKG-INFO
 dgnutils.egg-info/SOURCES.txt

@@ -5,6 +5,8 @@ from IPython.display import clear_output
 
 print('01/27/20 dgnutils update loaded!')
 
+# Use conda develop /path/to/local/github/module to manage this file
+
 #Tracing
 #pdb.set_trace()
 

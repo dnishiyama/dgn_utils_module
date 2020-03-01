@@ -3,7 +3,7 @@ from enum import Enum, auto
 from datetime import timedelta, date, datetime
 from IPython.display import clear_output
 
-print('01/27/20 dgnutils update loaded!')
+print('02/18/20 dgnutils update loaded!')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -115,6 +115,7 @@ def quick_info(self, table='subscriber_data', **kwargs):
     if not amount: print([c[0] for c in self.description])
     return self.fetchone()
 pymysql.cursors.DictCursor.quick_info = quick_info
+pymysql.cursors.Cursor.quick_info = quick_info
 
 def e(self, sql_stmt, values=None, many=False):
     execute_fn = self.executemany if many else self.execute # Choose executemany or execute
@@ -123,6 +124,7 @@ def e(self, sql_stmt, values=None, many=False):
     if sql_stmt[:6] in ['DELETE', 'INSERT', 'UPDATE']: return rows
     return self.fetchall()
 pymysql.cursors.DictCursor.e = e
+pymysql.cursors.Cursor.e = e
 
 def dict_insert(self, data_list:list, table:str):
     """
@@ -152,6 +154,7 @@ def dict_insert(self, data_list:list, table:str):
     logging.debug(f'dict_insert {len(values)} values: {[v for v in values[:2]]}')
     return self.executemany(sql_string, values)
 pymysql.cursors.DictCursor.dict_insert = dict_insert
+pymysql.cursors.Cursor.dict_insert = dict_insert
 
 def array_insert(self, data_list:list, columns:list, table:str):
     """
@@ -174,6 +177,7 @@ def array_insert(self, data_list:list, columns:list, table:str):
     data_list = [{c:d[i] for i,c in enumerate(columns)} for d in data_list]
     return dict_insert(self, data_list, table)
 pymysql.cursors.DictCursor.array_insert = array_insert
+pymysql.cursors.Cursor.array_insert = array_insert
 
 # array_insert tests
 #table='TEST_subscriber_data_list'

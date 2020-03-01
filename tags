@@ -3,29 +3,18 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
-!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-APIAutoDocTest	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^class APIAutoDocTest(base.BaseTestCase):$/;"	c
+!_TAG_PROGRAM_VERSION	5.8	//
 BOOL_FIELDS	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^BOOL_FIELDS = ("use_2to3", "zip_safe", "include_package_data")$/;"	v
 BackwardsCompatConfig	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/backwards.py	/^class BackwardsCompatConfig(base.BaseConfig):$/;"	c
 BaseConfig	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/base.py	/^class BaseConfig(object):$/;"	c
-BaseSphinxTest	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^class BaseSphinxTest(base.BaseTestCase):$/;"	c
-BaseTestCase	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^class BaseTestCase(testtools.TestCase, testresources.ResourcedTestCase):$/;"	c
-BuildSphinxTest	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^class BuildSphinxTest(BaseSphinxTest):$/;"	c
-BytesIO	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    BytesIO = io.BytesIO$/;"	v
-BytesIO	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    BytesIO = io.StringIO$/;"	v
 CSV_FIELDS	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^CSV_FIELDS = ()$/;"	v
-CapturedSubprocess	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^class CapturedSubprocess(fixtures.Fixture):$/;"	c
 CommandsConfig	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^class CommandsConfig(base.BaseConfig):$/;"	c
-CreatePackages	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class CreatePackages(fixtures.Fixture):$/;"	c
 D1_D2_SETUP_ARGS	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^D1_D2_SETUP_ARGS = {$/;"	v
 DefaultGetDict	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^class DefaultGetDict(defaultdict):$/;"	c
-DiveDir	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^class DiveDir(fixtures.Fixture):$/;"	c
 ENTRY_POINTS_MAP	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^ENTRY_POINTS_MAP = {$/;"	v
+Enum	build/lib/dgnutils/__init__.py	/^from enum import Enum, auto$/;"	i
+Enum	dgnutils/__init__.py	/^from enum import Enum, auto$/;"	i
 FilesConfig	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^class FilesConfig(base.BaseConfig):$/;"	c
-FilesConfigTest	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_files.py	/^class FilesConfigTest(base.BaseTestCase):$/;"	c
-Foo	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/cmd.py	/^class Foo(object):$/;"	c
-GPGKeyFixture	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class GPGKeyFixture(fixtures.Fixture):$/;"	c
-GitLogsTest	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^class GitLogsTest(base.BaseTestCase):$/;"	c
 InstallWithGit	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^class InstallWithGit(install.install):$/;"	c
 LocalBuildDoc	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^class LocalBuildDoc(setup_command.BuildDoc):$/;"	c
 LocalBuildDoc	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    LocalBuildDoc = None$/;"	v
@@ -42,64 +31,17 @@ MAP_FIELDS	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^MAP_FIELDS = ("project_urls",
 MULTI_FIELDS	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^MULTI_FIELDS = ("classifiers",$/;"	v
 MetadataConfig	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/metadata.py	/^class MetadataConfig(base.BaseConfig):$/;"	c
 NoseTest	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    class NoseTest(commands.nosetests):$/;"	c	function:have_testr
-PBRVERSION	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^PBRVERSION = os.environ.get('PBRVERSION', 'pbr')$/;"	v
-PBR_ROOT	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^PBR_ROOT = os.path.abspath(os.path.join(__file__, '..', '..', '..'))$/;"	v
-PBR_ROOT	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^PBR_ROOT = os.path.abspath(os.path.join(__file__, '..', '..', '..'))$/;"	v
-PIPFLAGS	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^PIPFLAGS = shlex.split(os.environ.get('PIPFLAGS', ''))$/;"	v
-PIPVERSION	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^PIPVERSION = os.environ.get('PIPVERSION', 'pip')$/;"	v
-PIP_CMD	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^PIP_CMD = ['-m', 'pip'] + PIPFLAGS + ['install', '-f', WHEELHOUSE]$/;"	v
-PROJECTS	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^PROJECTS = shlex.split(os.environ.get('PROJECTS', ''))$/;"	v
 PY_REQUIREMENTS_FILES	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^PY_REQUIREMENTS_FILES = [x % sys.version_info[0] for x in ($/;"	v
-ParseDependencyLinksTest	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class ParseDependencyLinksTest(base.BaseTestCase):$/;"	c
-ParseRequirementsTest	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class ParseRequirementsTest(base.BaseTestCase):$/;"	c
-ParseRequirementsTestScenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class ParseRequirementsTestScenarios(base.BaseTestCase):$/;"	c
-PyInit_testext	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/src/testext.c	/^PyInit_testext(void)$/;"	f
-REPODIR	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^REPODIR = os.environ.get('REPODIR', '')$/;"	v
 REQUIREMENTS_FILES	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^REQUIREMENTS_FILES = ('requirements.txt', 'tools\/pip-requires')$/;"	v
 SemanticVersion	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^class SemanticVersion(object):$/;"	c
-SkipFileWrites	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^class SkipFileWrites(base.BaseTestCase):$/;"	c
 TEST_REQUIREMENTS_FILES	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^TEST_REQUIREMENTS_FILES = ('test-requirements.txt', 'tools\/test-requires')$/;"	v
 TRUE_VALUES	.eggs/pbr-5.4.4-py3.7.egg/pbr/options.py	/^TRUE_VALUES = ('true', '1', 'yes')$/;"	v
-TestCommands	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_commands.py	/^class TestCommands(base.BaseTestCase):$/;"	c
-TestCore	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^class TestCore(base.BaseTestCase):$/;"	c
-TestDataFilesParsing	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^class TestDataFilesParsing(base.BaseTestCase):$/;"	c
-TestExtrafileInstallation	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestExtrafileInstallation(base.BaseTestCase):$/;"	c
-TestExtrasRequireParsingScenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^class TestExtrasRequireParsingScenarios(base.BaseTestCase):$/;"	c
-TestGitSDist	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^class TestGitSDist(base.BaseTestCase):$/;"	c
-TestHooks	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_hooks.py	/^class TestHooks(base.BaseTestCase):$/;"	c
-TestInstallWithoutPbr	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^class TestInstallWithoutPbr(base.BaseTestCase):$/;"	c
-TestIntegration	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^class TestIntegration(base.BaseTestCase):$/;"	c
-TestInvalidMarkers	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^class TestInvalidMarkers(base.BaseTestCase):$/;"	c
-TestJsonContent	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_pbr_json.py	/^class TestJsonContent(base.BaseTestCase):$/;"	c
-TestKeywordsParsingScenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^class TestKeywordsParsingScenarios(base.BaseTestCase):$/;"	c
-TestLTSSupport	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^class TestLTSSupport(base.BaseTestCase):$/;"	c
-TestMapFieldsParsingScenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^class TestMapFieldsParsingScenarios(base.BaseTestCase):$/;"	c
-TestMarkersPip	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^class TestMarkersPip(base.BaseTestCase):$/;"	c
-TestPackagingHelpers	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestPackagingHelpers(testtools.TestCase):$/;"	c
-TestPackagingInGitRepoWithCommit	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestPackagingInGitRepoWithCommit(base.BaseTestCase):$/;"	c
-TestPackagingInGitRepoWithoutCommit	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestPackagingInGitRepoWithoutCommit(base.BaseTestCase):$/;"	c
-TestPackagingInPlainDirectory	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestPackagingInPlainDirectory(base.BaseTestCase):$/;"	c
-TestPackagingWheels	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestPackagingWheels(base.BaseTestCase):$/;"	c
-TestPresenceOfGit	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestPresenceOfGit(base.BaseTestCase):$/;"	c
-TestProvidesExtras	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^class TestProvidesExtras(base.BaseTestCase):$/;"	c
-TestRepo	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestRepo(fixtures.Fixture):$/;"	c
-TestRepositoryURLDependencies	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestRepositoryURLDependencies(base.BaseTestCase):$/;"	c
-TestRequirementParsing	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestRequirementParsing(base.BaseTestCase):$/;"	c
-TestSemanticVersion	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^class TestSemanticVersion(base.BaseTestCase):$/;"	c
-TestUTF8DescriptionFile	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^class TestUTF8DescriptionFile(base.BaseTestCase):$/;"	c
-TestVersions	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class TestVersions(base.BaseTestCase):$/;"	c
-TestWsgiScripts	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_wsgi.py	/^class TestWsgiScripts(base.BaseTestCase):$/;"	c
-TestextMethods	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/src/testext.c	/^static PyMethodDef TestextMethods[] = {$/;"	v	file:
 Testr	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    Testr = TestrFake$/;"	v
 Testr	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    Testr = TestrReal$/;"	v
 TestrFake	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^class TestrFake(cmd.Command):$/;"	c
 TestrReal	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^class TestrReal(cmd.Command):$/;"	c
 TestrTest	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^class TestrTest(testr_command.Testr):$/;"	c
-Venv	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^class Venv(fixtures.Fixture):$/;"	c
 VersionInfo	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^class VersionInfo(object):$/;"	c
-WHEELHOUSE	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^WHEELHOUSE = os.environ.get('WHEELHOUSE', '')$/;"	v
-WSGI	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/wsgi.py	/^class WSGI(object):$/;"	c
-_SphinxConfig	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^class _SphinxConfig(object):$/;"	c
 _VERSION_SPEC_RE	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^_VERSION_SPEC_RE = re.compile(r'\\s*(.*?)\\s*\\((.*)\\)\\s*$')$/;"	v
 __eq__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __eq__(self, other):$/;"	m	class:SemanticVersion	file:
 __ge__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __ge__(self, other):$/;"	m	class:SemanticVersion	file:
@@ -108,11 +50,6 @@ __hash__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __hash__(self):$/;"	
 __init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/base.py	/^    def __init__(self, config):$/;"	m	class:BaseConfig
 __init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^    def __init__(self, config):$/;"	m	class:CommandsConfig
 __init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^    def __init__(self, config, name):$/;"	m	class:FilesConfig
-__init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^    def __init__(self, label, *args, **kwargs):$/;"	m	class:CapturedSubprocess
-__init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^    def __init__(self, path):$/;"	m	class:DiveDir
-__init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def __init__(self, basedir):$/;"	m	class:TestRepo
-__init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def __init__(self, packages):$/;"	m	class:CreatePackages
-__init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def __init__(self, reason, modules=(), pip_cmd=None):$/;"	m	class:Venv
 __init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __init__($/;"	m	class:SemanticVersion
 __init__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __init__(self, package):$/;"	m	class:VersionInfo
 __le__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __le__(self, other):$/;"	m	class:SemanticVersion	file:
@@ -121,21 +58,15 @@ __ne__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __ne__(self, other):$/
 __repr__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __repr__(self):$/;"	m	class:SemanticVersion	file:
 __repr__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __repr__(self):$/;"	m	class:VersionInfo	file:
 __str__	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def __str__(self):$/;"	m	class:VersionInfo	file:
-__version__	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/__init__.py	/^__version__ = pbr.version.VersionInfo('pbr_testpackage').version_string()$/;"	v
 _add_pbr_defaults	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def _add_pbr_defaults(self):$/;"	m	class:LocalManifestMaker
 _any_existing	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def _any_existing(file_list):$/;"	f
 _builder_inited	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^def _builder_inited(app):$/;"	f
-_check_combinations	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^        def _check_combinations(tag):$/;"	f	function:TestVersions.test_get_kwargs_corner_cases
-_check_wsgi_install_content	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_wsgi.py	/^    def _check_wsgi_install_content(self, install_stdout):$/;"	m	class:TestWsgiScripts
 _clean_changelog_message	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _clean_changelog_message(msg):$/;"	f
-_config_git	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^def _config_git():$/;"	f
 _coverage_after	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    def _coverage_after(self):$/;"	m	class:TestrReal
 _coverage_before	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    def _coverage_before(self):$/;"	m	class:TestrReal
 _deprecated_envs	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^_deprecated_envs = ['AUTODOC_TREE_INDEX_MODULES', 'AUTODOC_INDEX_MODULES']$/;"	v
 _deprecated_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^_deprecated_options = ['autodoc_tree_index_modules', 'autodoc_index_modules',$/;"	v
-_discard_testpackage	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^    def _discard_testpackage(self):$/;"	m	class:BaseTestCase
 _extra_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/extra_files.py	/^_extra_files = []$/;"	v
-_fake_run_shell_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^        def _fake_run_shell_command(cmd, **kwargs):$/;"	f	function:GitLogsTest.test_generate_authors
 _find_git_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _find_git_files(dirname='', git_dir=None):$/;"	f
 _find_modules	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^def _find_modules(arg, dirname, files):$/;"	f
 _find_setup_cfg	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^def _find_setup_cfg(srcdir):$/;"	f
@@ -146,7 +77,6 @@ _get_highest_tag	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _get_highest_tag(tag
 _get_increment_kwargs	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def _get_increment_kwargs(git_dir, tag):$/;"	f
 _get_info	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^def _get_info(name):$/;"	f
 _get_metadata	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^def _get_metadata(package_name):$/;"	f
-_get_path	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_wsgi.py	/^    def _get_path(self):$/;"	m	class:TestWsgiScripts
 _get_project_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^def _get_project_name(srcdir):$/;"	f
 _get_raw_tag_info	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _get_raw_tag_info(git_dir):$/;"	f
 _get_revno_and_last_tag	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def _get_revno_and_last_tag(git_dir):$/;"	f
@@ -166,49 +96,51 @@ _iter_changelog	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _iter_changelog(chang
 _iter_log_inner	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _iter_log_inner(git_dir):$/;"	f
 _iter_log_oneline	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _iter_log_oneline(git_dir=None):$/;"	f
 _long_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def _long_version(self, pre_separator, rc_marker=""):$/;"	m	class:SemanticVersion
-_make_old_git_changelog_format	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^def _make_old_git_changelog_format(line):$/;"	f
 _make_wsgi_scripts_only	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def _make_wsgi_scripts_only(self, dist, executable, is_wininst):$/;"	m	class:LocalInstallScripts
-_old_git_changelog_content	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^_old_git_changelog_content = '\\n'.join($/;"	v
 _parse_type	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^        def _parse_type(segment):$/;"	f	function:SemanticVersion._from_pip_string_unsafe
 _project	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^_project = None$/;"	v
-_run_cmd	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^    def _run_cmd(self, cmd, args=[], allow_fail=True, cwd=None):$/;"	m	class:BaseTestCase
-_run_cmd	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^def _run_cmd(args, cwd):$/;"	f
 _run_git_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _run_git_command(cmd, git_dir, **kwargs):$/;"	f
 _run_git_functions	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _run_git_functions():$/;"	f
 _run_shell_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def _run_shell_command(cmd, throw_on_error=False, buffer=True, env=None):$/;"	f
 _run_testr	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    def _run_testr(self, *args):$/;"	m	class:TestrReal
-_setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def _setUp(self):$/;"	m	class:CreatePackages
-_setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def _setUp(self):$/;"	m	class:Venv
 _sort_key	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def _sort_key(self):$/;"	m	class:SemanticVersion
 _sphinx_run	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    def _sphinx_run(self):$/;"	m	class:LocalBuildDoc
 _sphinx_tree	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    def _sphinx_tree(self):$/;"	m	class:LocalBuildDoc
-_test_wsgi	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_wsgi.py	/^    def _test_wsgi(self, cmd_name, output, extra_args=None):$/;"	m	class:TestWsgiScripts
-_writeFile	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def _writeFile(self, directory, file_name, contents):$/;"	m	class:CreatePackages
 add_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^    def add_command(self, command):$/;"	m	class:CommandsConfig
 add_defaults	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def add_defaults(self):$/;"	m	class:LocalManifestMaker
-add_function_parentheses	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/doc/source/conf.py	/^add_function_parentheses = True$/;"	v
 add_man_page	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^    def add_man_page(self, man_page):$/;"	m	class:FilesConfig
 add_man_path	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^    def add_man_path(self, man_path):$/;"	m	class:FilesConfig
-add_module_names	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/doc/source/conf.py	/^add_module_names = True$/;"	v
-all_projects	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^def all_projects():$/;"	f
+apidoc	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^        from sphinx import apidoc$/;"	i
+apidoc	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^        from sphinx.ext import apidoc$/;"	i
 apidoc_use_padding	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^        apidoc_use_padding = False$/;"	v
 apidoc_use_padding	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^        apidoc_use_padding = True$/;"	v
-app	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/wsgi.py	/^    def app(self):$/;"	m	class:WSGI
 append_text_list	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def append_text_list(config, key, text_list):$/;"	f
-application	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/wsgi.py	/^def application(env, start_response, data):$/;"	f
+application	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    from sphinx import application$/;"	i
+argparse	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^import argparse$/;"	i
 array_insert	build/lib/dgnutils/__init__.py	/^def array_insert(self, data_list:list, columns:list, table:str):$/;"	f
 array_insert	dgnutils/__init__.py	/^def array_insert(self, data_list:list, columns:list, table:str):$/;"	f
-bar	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/cmd.py	/^    def bar(self):$/;"	m	class:Foo
+auto	build/lib/dgnutils/__init__.py	/^from enum import Enum, auto$/;"	i
+auto	dgnutils/__init__.py	/^from enum import Enum, auto$/;"	i
+backwards	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/__init__.py	/^from pbr.hooks import backwards$/;"	i
+base	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/backwards.py	/^from pbr.hooks import base$/;"	i
+base	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^from pbr.hooks import base$/;"	i
+base	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^from pbr.hooks import base$/;"	i
+base	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/metadata.py	/^from pbr.hooks import base$/;"	i
 boolean_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    boolean_options = ['coverage', 'slowest', 'no_parallel']$/;"	v	class:TestrReal
 brief_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def brief_string(self):$/;"	m	class:SemanticVersion
+builddoc	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    from pbr import builddoc$/;"	i
 builders	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    builders = ['html']$/;"	v	class:LocalBuildDoc
+cStringIO	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    import cStringIO$/;"	i
+cStringIO	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    import io as cStringIO$/;"	i
 cached_version_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def cached_version_string(self, prefix=""):$/;"	m	class:VersionInfo
 canonical_version_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    canonical_version_string = version_string$/;"	v	class:VersionInfo
+ccompiler	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import distutils.ccompiler$/;"	i
 cfg_to_args	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^def cfg_to_args(path='setup.cfg', script_args=()):$/;"	f
-check_script_install	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^    def check_script_install(self, install_stdout):$/;"	m	class:TestCore
 checking_reno	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def checking_reno(self):$/;"	m	class:LocalSDist
-cmd_names	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^    cmd_names = ('pbr_test_cmd', 'pbr_test_cmd_with_class')$/;"	v	class:TestCore
-cmd_names	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_wsgi.py	/^    cmd_names = ('pbr_test_wsgi', 'pbr_test_wsgi_with_class')$/;"	v	class:TestWsgiScripts
+clear_output	build/lib/dgnutils/__init__.py	/^from IPython.display import clear_output$/;"	i
+clear_output	dgnutils/__init__.py	/^from IPython.display import clear_output$/;"	i
+cmd	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^from distutils import cmd$/;"	i
+command	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^        import distutils.command.install_scripts$/;"	i
 command_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    command_name = 'build_sphinx'$/;"	v	class:LocalBuildDoc
 command_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^        command_name = 'test'$/;"	v	class:have_testr.NoseTest
 command_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    command_name = "deb_version"$/;"	v	class:LocalDebVersion
@@ -220,49 +152,76 @@ command_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    command_name = 'in
 command_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    command_name = 'install_scripts'$/;"	v	class:LocalInstallScripts
 command_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    command_name = 'sdist'$/;"	v	class:LocalSDist
 command_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    command_name = 'test'$/;"	v	class:TestrTest
-command_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/_setup_hooks.py	/^    command_name = 'build_py'$/;"	v	class:test_command
-commit	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def commit(self, message_content='test commit'):$/;"	m	class:TestRepo
-config_from_ini	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^def config_from_ini(ini):$/;"	f
+commands	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/__init__.py	/^from pbr.hooks import commands$/;"	i
+commands	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    from nose import commands$/;"	i
+commands	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    from testrepository import commands$/;"	i
+configparser	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^from six.moves import configparser$/;"	i
+configparser	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^    import ConfigParser as configparser$/;"	i
+configparser	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^    import configparser$/;"	i
 connect	build/lib/dgnutils/__init__.py	/^def connect(db='ck_info', **kwargs):$/;"	f
 connect	dgnutils/__init__.py	/^def connect(db='ck_info', **kwargs):$/;"	f
 conv_created_at_to_subscribe_date	build/lib/dgnutils/__init__.py	/^def conv_created_at_to_subscribe_date(created_at:str): return created_at_conv(created_at); # Legacy function$/;"	f
 conv_time_1	build/lib/dgnutils/__init__.py	/^def conv_time_1(time: str): return datetime.strptime(time, '%Y-%m-%d')$/;"	f
 conv_time_1	dgnutils/__init__.py	/^def conv_time_1(time: str): logging.warning('conv_time_1 Deprecated; Use time_ck_to_dt'); return time_ck_to_dt(time);$/;"	f
 conv_time_2	build/lib/dgnutils/__init__.py	/^def conv_time_2(time:str):$/;"	f
-copyright	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/doc/source/conf.py	/^copyright = u'2013, OpenStack Foundation'$/;"	v
 created_at_conv	build/lib/dgnutils/__init__.py	/^def created_at_conv(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')$/;"	f
 created_at_conv	dgnutils/__init__.py	/^def created_at_conv(time: str): logging.warning('created_at_conv Deprecated; Use time_created_to_ck'); return time_created_to_ck(time);$/;"	f
 created_to_dt	dgnutils/__init__.py	/^def created_to_dt(time: str): logging.warning('created_to_dt Deprecated; Use prefix time_'); return time_created_to_dt(time);$/;"	f
 current_unix	dgnutils/__init__.py	/^def current_unix(): logging.warning('current_unix Deprecated; Use prefix time_'); return time_current_unix();$/;"	f
+date	build/lib/dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+date	dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
 daterange	dgnutils/__init__.py	/^def daterange(start_date, end_date):$/;"	f
+datetime	build/lib/dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+datetime	dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
 datetime_to_unix	dgnutils/__init__.py	/^def datetime_to_unix(dt): logging.warning('datetime_to_unix Deprecated; Use time_dt_to_unix'); return time_dt_to_unix(dt)$/;"	f
 days_ago	dgnutils/__init__.py	/^def days_ago(days=0): logging.warning('Deprecated; Use prefix time_'); return time_days_ago(days=days)$/;"	f
 debian_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def debian_string(self):$/;"	m	class:SemanticVersion
 decrement	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def decrement(self):$/;"	m	class:SemanticVersion
-defaults	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    defaults = {$/;"	v	class:CreatePackages
+defaultdict	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^from collections import defaultdict$/;"	i
 description	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^        description = 'DEPRECATED: Run unit tests using nose'$/;"	v	class:have_testr.NoseTest
 description	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    description = 'DEPRECATED: Run unit tests using testr'$/;"	v	class:TestrTest
 description	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    description = __doc__$/;"	v	class:LocalDebVersion
 description	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    description = __doc__$/;"	v	class:LocalRPMVersion
 description	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    description = "DEPRECATED: Run unit tests using testr"$/;"	v	class:TestrReal
 description	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    description = "Run unit tests using testr"$/;"	v	class:TestrFake
+develop	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from setuptools.command import develop$/;"	i
 dgn_enum	dgnutils/__init__.py	/^def dgn_enum(_list:list):$/;"	f
 dict_insert	build/lib/dgnutils/__init__.py	/^def dict_insert(self, data_list:list, table:str):$/;"	f
 dict_insert	dgnutils/__init__.py	/^def dict_insert(self, data_list:list, table:str):$/;"	f
+distutils	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^import distutils.errors$/;"	i
+distutils	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^        import distutils.command.install_scripts$/;"	i
+distutils	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^import distutils.errors$/;"	i
+distutils	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import distutils.ccompiler$/;"	i
+du_install	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from distutils.command import install as du_install$/;"	i
 e	build/lib/dgnutils/__init__.py	/^def e(self, sql_stmt, values=None, many=False):$/;"	f
 e	dgnutils/__init__.py	/^def e(self, sql_stmt, values=None, many=False):$/;"	f
+easy_install	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^from setuptools.command import easy_install$/;"	i
+easy_install	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from setuptools.command import easy_install$/;"	i
 egg_fragment	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def egg_fragment(match):$/;"	f
-excludes	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^              excludes="fake_package.fake_private_module\\n"$/;"	v	class:BuildSphinxTest
+egg_info	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from setuptools.command import egg_info$/;"	i
+email	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import email$/;"	i
+email	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import email.errors$/;"	i
+errno	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^import errno$/;"	i
+errors	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^from distutils import errors$/;"	i
+errors	.eggs/pbr-5.4.4-py3.7.egg/pbr/extra_files.py	/^from distutils import errors$/;"	i
+errors	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^import distutils.errors$/;"	i
+errors	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import email.errors$/;"	i
+errors	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^import distutils.errors$/;"	i
+errors	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^from distutils import errors$/;"	i
 expand_globs	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^    def expand_globs(self):$/;"	m	class:FilesConfig
-extensions	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/doc/source/conf.py	/^extensions = [$/;"	v
+extension	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^from setuptools import extension$/;"	i
+extra_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from pbr import extra_files$/;"	i
+extra_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^from pbr import extra_files$/;"	i
+files	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/__init__.py	/^from pbr.hooks import files$/;"	i
 finalize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    def finalize_options(self):$/;"	m	class:LocalBuildDoc
 finalize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def finalize_options(self):$/;"	m	class:LocalDebVersion
 finalize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def finalize_options(self):$/;"	m	class:LocalRPMVersion
 finalize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    def finalize_options(self):$/;"	m	class:TestrFake
 finalize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    def finalize_options(self):$/;"	m	class:TestrReal
+find_package	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^from pbr import find_package$/;"	i
 find_sources	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def find_sources(self):$/;"	m	class:LocalEggInfo
+fnmatch	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^import fnmatch$/;"	i
 freeze	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^def freeze(args):$/;"	f
-from_pip_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^from_pip_string = version.SemanticVersion.from_pip_string$/;"	v
 from_pip_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def from_pip_string(klass, version_string):$/;"	m	class:SemanticVersion
 generate_authors	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def generate_authors(git_dir=None, dest_dir='.', option_dict=dict()):$/;"	f
 generate_autoindex	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    def generate_autoindex(self, excluded_modules=None):$/;"	m	class:LocalBuildDoc
@@ -277,7 +236,6 @@ get_info	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^def get_info(args):$/;"	f
 get_is_release	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def get_is_release(git_dir):$/;"	f
 get_json_columns	build/lib/dgnutils/__init__.py	/^def get_json_columns(dict_, columns=["id"]):$/;"	f
 get_json_columns	dgnutils/__init__.py	/^def get_json_columns(dict_, columns=["id"]):$/;"	f
-get_kwargs	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^        def get_kwargs(tag):$/;"	f	function:TestVersions.test_get_kwargs_corner_cases
 get_man_section	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^def get_man_section(section):$/;"	f
 get_man_sections	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^    def get_man_sections(self):$/;"	m	class:FilesConfig
 get_manpath	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^def get_manpath():$/;"	f
@@ -285,8 +243,10 @@ get_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/metadata.py	/^    def get_name(self
 get_reqs_from_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def get_reqs_from_files(requirements_files):$/;"	f
 get_requirements_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def get_requirements_files():$/;"	f
 get_sha	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^def get_sha(args):$/;"	f
-get_soabi	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^def get_soabi():$/;"	f
 get_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def get_version(package_name, pre_version=None):$/;"	f
+git	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^from pbr import git$/;"	i
+git	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from pbr import git$/;"	i
+git	.eggs/pbr-5.4.4-py3.7.egg/pbr/pbr_json.py	/^from pbr import git$/;"	i
 has_get_option	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^def has_get_option(config, section, option):$/;"	f
 have_nose	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def have_nose():$/;"	f
 have_sphinx	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def have_sphinx():$/;"	f
@@ -298,6 +258,7 @@ hook	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/base.py	/^    def hook(self):$/;"	m	cla
 hook	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^    def hook(self):$/;"	m	class:CommandsConfig
 hook	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^    def hook(self):$/;"	m	class:FilesConfig
 hook	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/metadata.py	/^    def hook(self):$/;"	m	class:MetadataConfig
+hooks	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import pbr.hooks$/;"	i
 include	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^        def include(module):$/;"	f	function:LocalBuildDoc.generate_autoindex
 increment	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def increment(self, minor=False, major=False):$/;"	m	class:SemanticVersion
 initialize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    def initialize_options(self):$/;"	m	class:LocalBuildDoc
@@ -305,48 +266,107 @@ initialize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def initiali
 initialize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def initialize_options(self):$/;"	m	class:LocalRPMVersion
 initialize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    def initialize_options(self):$/;"	m	class:TestrFake
 initialize_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    def initialize_options(self):$/;"	m	class:TestrReal
-inittestext	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/src/testext.c	/^inittestext(void)$/;"	f
+install	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from setuptools.command import install$/;"	i
+install_scripts	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^        import distutils.command.install_scripts$/;"	i
+install_scripts	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from setuptools.command import install_scripts$/;"	i
 install_wrapper_scripts	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def install_wrapper_scripts(self, dist):$/;"	m	class:LocalDevelop
 integer_types	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^    integer_types = (int, long)  # noqa$/;"	v
 integer_types	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^    integer_types = (int,)$/;"	v
-latex_documents	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/doc/source/conf.py	/^latex_documents = [$/;"	v
-load_tests	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/__init__.py	/^def load_tests(loader, standard_tests, pattern):$/;"	f
+io	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^import io$/;"	i
+io	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import io$/;"	i
+itertools	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^import itertools$/;"	i
+json	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^import json$/;"	i
+json	.eggs/pbr-5.4.4-py3.7.egg/pbr/pbr_json.py	/^import json$/;"	i
+json	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+json	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+log	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^from distutils import log$/;"	i
+log	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^from distutils import log$/;"	i
+log	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from distutils import log$/;"	i
+log	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^from distutils import log$/;"	i
 log_level	build/lib/dgnutils/__init__.py	/^def log_level(level=None):$/;"	f
 log_level	dgnutils/__init__.py	/^def log_level(level=None):$/;"	f
 logger	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^logger = logging.getLogger(__name__)$/;"	v
 logger	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^logger = logging.getLogger(__name__)$/;"	v
+logging	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^import logging$/;"	i
+logging	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^from sphinx.util import logging$/;"	i
+logging	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^import logging$/;"	i
+logging	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import logging  # noqa$/;"	i
+logging	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+logging	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
 mailchimp_conv	build/lib/dgnutils/__init__.py	/^def mailchimp_conv(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')$/;"	f
 mailchimp_conv	dgnutils/__init__.py	/^def mailchimp_conv(time: str): logging.warning('mailchimp_conv Deprecated; Use time_ck_to_dt'); return time_mailchimp_to_ck$/;"	f
 main	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^def main():$/;"	f
-main	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/cmd.py	/^def main():$/;"	f
-main	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/wsgi.py	/^def main():$/;"	f
 make_distribution	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def make_distribution(self):$/;"	m	class:LocalSDist
-man_pages	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    man_pages = ['foo']$/;"	v	class:_SphinxConfig
-master_doc	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/doc/source/conf.py	/^master_doc = 'index'$/;"	v
+metadata	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/__init__.py	/^from pbr.hooks import metadata$/;"	i
+multiprocessing	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^    import multiprocessing  # noqa$/;"	i
 mysql_array	build/lib/dgnutils/__init__.py	/^def mysql_array(array:list):$/;"	f
 mysql_array	dgnutils/__init__.py	/^def mysql_array(array:list):$/;"	f
+nbslack	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+nbslack	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+noqa	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^            from reno import setup_command  # noqa$/;"	i
+noqa	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^    import multiprocessing  # noqa$/;"	i
+noqa	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import logging  # noqa$/;"	i
 notify	build/lib/dgnutils/__init__.py	/^def notify(text='Work'): nbslack.notify(f"{text}")$/;"	f
 notify	dgnutils/__init__.py	/^	def notify(text='Work'): nbslack.notify(f"{text}")$/;"	f	function:mailchimp_conv
 notify	dgnutils/__init__.py	/^	def notify(text=None): return$/;"	f
-onerror	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/util.py	/^    def onerror(func, path, exc_info):$/;"	f	function:rmtree
-open_config	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/util.py	/^def open_config(filename):$/;"	f
+operator	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^import operator$/;"	i
+options	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^from pbr import options$/;"	i
+options	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^from pbr import options$/;"	i
+options	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^from pbr import options$/;"	i
+options	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from pbr import options$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/extra_files.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/find_package.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/options.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^import os.path$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^import os$/;"	i
+os	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import os$/;"	i
+os	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+os	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
 override_get_script_args	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def override_get_script_args($/;"	f
+packaging	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/backwards.py	/^from pbr import packaging$/;"	i
+packaging	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^from pbr import packaging$/;"	i
+packaging	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/metadata.py	/^from pbr import packaging$/;"	i
+packaging	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^            from pbr import packaging$/;"	i
+packaging	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^            from pbr import packaging$/;"	i
 parse_dependency_links	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def parse_dependency_links(requirements_files=None):$/;"	f
 parse_requirements	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^def parse_requirements(requirements_files=None, strip_markers=False):$/;"	f
+path	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^import os.path$/;"	i
+pbr	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^import pbr.version$/;"	i
 pbr	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^def pbr(dist, attr, value):$/;"	f
-pbr	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/setup.py	/^    pbr=True,$/;"	v
+pbr	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import pbr.pbr_json$/;"	i
+pbr	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^import pbr.version$/;"	i
+pbr	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import pbr.hooks$/;"	i
 pbr	setup.py	/^    pbr=True,$/;"	v
+pbr_json	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import pbr.pbr_json$/;"	i
+pdb	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+pdb	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+pkg_resources	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^import pkg_resources$/;"	i
+pkg_resources	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^import pkg_resources$/;"	i
+pkg_resources	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import pkg_resources$/;"	i
+pkg_resources	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import pkg_resources$/;"	i
+pkg_resources	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^        import pkg_resources$/;"	i
 print_array	build/lib/dgnutils/__init__.py	/^def print_array(array:list):$/;"	f
 print_array	dgnutils/__init__.py	/^def print_array(array:list):$/;"	f
-project	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/doc/source/conf.py	/^project = u'testpackage'$/;"	v
-pygments_style	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/doc/source/conf.py	/^pygments_style = 'sphinx'$/;"	v
+pymysql	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+pymysql	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
+pytz	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
 quick_info	build/lib/dgnutils/__init__.py	/^def quick_info(self, table='subscriber_data', **kwargs):$/;"	f
 quick_info	dgnutils/__init__.py	/^def quick_info(self, table='subscriber_data', **kwargs):$/;"	f
+re	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^import re$/;"	i
+re	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import re$/;"	i
+re	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import re$/;"	i
+re	build/lib/dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb$/;"	i
+re	dgnutils/__init__.py	/^import json, os, nbslack, pymysql, re, logging, pdb, pytz$/;"	i
 register_custom_compilers	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^def register_custom_compilers(config):$/;"	f
 release_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def release_string(self):$/;"	m	class:SemanticVersion
 release_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def release_string(self):$/;"	m	class:VersionInfo
 resolve_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^def resolve_name(name):$/;"	f
-rmtree	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/util.py	/^def rmtree(path):$/;"	f
 rpm_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def rpm_string(self):$/;"	m	class:SemanticVersion
 run	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    def run(self):$/;"	m	class:LocalBuildDoc
 run	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/base.py	/^    def run(self):$/;"	m	class:BaseConfig
@@ -360,204 +380,50 @@ run	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def run(self):$/;"	m	class:
 run	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    def run(self):$/;"	m	class:TestrTest
 run	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    def run(self):$/;"	m	class:TestrFake
 run	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    def run(self):$/;"	m	class:TestrReal
-run	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/_setup_hooks.py	/^    def run(self):$/;"	m	class:test_command
-run_pbr	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^    def run_pbr(self, *args, **kwargs):$/;"	m	class:BaseTestCase
-run_setup	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^    def run_setup(self, *args, **kwargs):$/;"	m	class:BaseTestCase
 save	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/base.py	/^    def save(self):$/;"	m	class:BaseConfig
 save	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^    def save(self):$/;"	m	class:CommandsConfig
 save	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^    def save(self):$/;"	m	class:FilesConfig
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^    scenarios = [$/;"	v	class:TestLTSSupport
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^    scenarios = [$/;"	v	class:TestMarkersPip
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^    scenarios = list(all_projects())$/;"	v	class:TestIntegration
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    scenarios = [$/;"	v	class:ParseRequirementsTestScenarios
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    scenarios = [$/;"	v	class:TestPackagingInGitRepoWithCommit
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    scenarios = [$/;"	v	class:TestVersions
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    scenarios = scenarios + testscenarios.multiply_scenarios($/;"	v	class:ParseRequirementsTestScenarios
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    scenarios = scenarios + testscenarios.multiply_scenarios([$/;"	v	class:ParseRequirementsTestScenarios
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    scenarios = [$/;"	v	class:BuildSphinxTest
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    scenarios = [$/;"	v	class:GitLogsTest
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    scenarios = [$/;"	v	class:SkipFileWrites
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    scenarios = [$/;"	v	class:TestDataFilesParsing
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    scenarios = [$/;"	v	class:TestExtrasRequireParsingScenarios
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    scenarios = [$/;"	v	class:TestKeywordsParsingScenarios
-scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    scenarios = [$/;"	v	class:TestMapFieldsParsingScenarios
+sdist	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from setuptools.command import sdist$/;"	i
 section	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/backwards.py	/^    section = 'backwards_compat'$/;"	v	class:BackwardsCompatConfig
 section	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/base.py	/^    section = None$/;"	v	class:BaseConfig
 section	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/commands.py	/^    section = 'global'$/;"	v	class:CommandsConfig
 section	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^    section = 'files'$/;"	v	class:FilesConfig
 section	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/metadata.py	/^    section = 'metadata'$/;"	v	class:MetadataConfig
 semantic_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def semantic_version(self):$/;"	m	class:VersionInfo
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^    def setUp(self):$/;"	m	class:BaseTestCase
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^    def setUp(self):$/;"	m	class:CapturedSubprocess
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/base.py	/^    def setUp(self):$/;"	m	class:DiveDir
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^    def setUp(self):$/;"	m	class:TestGitSDist
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_files.py	/^    def setUp(self):$/;"	m	class:FilesConfigTest
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_hooks.py	/^    def setUp(self):$/;"	m	class:TestHooks
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^    def setUp(self):$/;"	m	class:TestIntegration
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def setUp(self):$/;"	m	class:GPGKeyFixture
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def setUp(self):$/;"	m	class:ParseDependencyLinksTest
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def setUp(self):$/;"	m	class:TestPackagingInGitRepoWithCommit
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def setUp(self):$/;"	m	class:TestPackagingInGitRepoWithoutCommit
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def setUp(self):$/;"	m	class:TestPackagingInPlainDirectory
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def setUp(self):$/;"	m	class:TestPackagingWheels
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def setUp(self):$/;"	m	class:TestRepo
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def setUp(self):$/;"	m	class:TestRepositoryURLDependencies
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def setUp(self):$/;"	m	class:TestVersions
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def setUp(self):$/;"	m	class:APIAutoDocTest
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def setUp(self):$/;"	m	class:BaseSphinxTest
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def setUp(self):$/;"	m	class:GitLogsTest
-setUp	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def setUp(self):$/;"	m	class:SkipFileWrites
 set_extra_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/extra_files.py	/^def set_extra_files(extra_files):$/;"	f
 setup	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^def setup(app):$/;"	f
+setup	setup.py	/^from setuptools import setup$/;"	i
 setup_cfg_to_setup_kwargs	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^def setup_cfg_to_setup_kwargs(config, script_args=()):$/;"	f
+setup_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    from sphinx import setup_command$/;"	i
+setup_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^            from reno import setup_command  # noqa$/;"	i
 setup_hook	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/__init__.py	/^def setup_hook(config):$/;"	f
-setup_requires	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/setup.py	/^    setup_requires=['pbr'],$/;"	v
 setup_requires	setup.py	/^    setup_requires=['pbr'],$/;"	v
+setuptools	.eggs/pbr-5.4.4-py3.7.egg/pbr/find_package.py	/^import setuptools$/;"	i
+setuptools	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import setuptools$/;"	i
+shlex	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^import shlex$/;"	i
+shlex	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import shlex$/;"	i
 shlex_split	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^def shlex_split(path):$/;"	f
 smart_find_packages	.eggs/pbr-5.4.4-py3.7.egg/pbr/find_package.py	/^def smart_find_packages(package_list):$/;"	f
-source_suffix	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/doc/source/conf.py	/^source_suffix = '.rst'$/;"	v
+sphinx	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    import sphinx$/;"	i
 sphinx_initialized	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^    sphinx_initialized = False$/;"	v	class:LocalBuildDoc
 split_csv	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^def split_csv(value):$/;"	f
 split_multiline	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^def split_multiline(value):$/;"	f
+st_dist	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^from setuptools import dist as st_dist$/;"	i
 string_to_unix	dgnutils/__init__.py	/^def string_to_unix(string, string_format="%Y-%m-%d"): logging.warning('string_to_unix Deprecated; Use time_str_to_unix'); return time_str_to_unix(string, string_format=string_format)$/;"	f
 string_type	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^    string_type = basestring  # noqa$/;"	v
 string_type	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^    string_type = str$/;"	v
 sub_commands	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    sub_commands = [('build_reno', checking_reno)] + sdist.sdist.sub_commands$/;"	v	class:LocalSDist
-subdirectory_scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    subdirectory_scenarios = [$/;"	v	class:ParseRequirementsTestScenarios
-tag	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def tag(self, version):$/;"	m	class:TestRepo
-tearDown	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def tearDown(self):$/;"	m	class:TestVersions
-testGitIsInstalled	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def testGitIsInstalled(self):$/;"	m	class:TestPresenceOfGit
-testGitIsNotInstalled	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def testGitIsNotInstalled(self):$/;"	m	class:TestPresenceOfGit
-test_alpha_default_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_alpha_default_version(self):$/;"	m	class:TestSemanticVersion
-test_alpha_dev_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_alpha_dev_version(self):$/;"	m	class:TestSemanticVersion
-test_alpha_major_zero_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_alpha_major_zero_version(self):$/;"	m	class:TestSemanticVersion
-test_alpha_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_alpha_version(self):$/;"	m	class:TestSemanticVersion
-test_alpha_zero_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_alpha_zero_version(self):$/;"	m	class:TestSemanticVersion
-test_authors	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_authors(self):$/;"	m	class:TestPackagingInGitRepoWithCommit
-test_authors	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_authors(self):$/;"	m	class:TestPackagingInGitRepoWithoutCommit
-test_authors	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_authors(self):$/;"	m	class:TestPackagingInPlainDirectory
-test_auto_package	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_files.py	/^    def test_auto_package(self):$/;"	m	class:FilesConfigTest
-test_beta_dev_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_beta_dev_version(self):$/;"	m	class:TestSemanticVersion
-test_beta_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_beta_version(self):$/;"	m	class:TestSemanticVersion
-test_build_doc	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def test_build_doc(self):$/;"	m	class:BuildSphinxTest
-test_builders_config	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def test_builders_config(self):$/;"	m	class:BuildSphinxTest
-test_capitalized_headers	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_capitalized_headers(self):$/;"	m	class:TestVersions
-test_capitalized_headers_partial	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_capitalized_headers_partial(self):$/;"	m	class:TestVersions
-test_changelog	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_changelog(self):$/;"	m	class:TestPackagingInGitRepoWithCommit
-test_changelog	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_changelog(self):$/;"	m	class:TestPackagingInGitRepoWithoutCommit
-test_changelog	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_changelog(self):$/;"	m	class:TestPackagingInPlainDirectory
-test_changelog_handles_astrisk	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_changelog_handles_astrisk(self):$/;"	m	class:TestPackagingInGitRepoWithCommit
-test_changelog_handles_backticks	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_changelog_handles_backticks(self):$/;"	m	class:TestPackagingInGitRepoWithCommit
-test_changelog_handles_dead_links_in_commit	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_changelog_handles_dead_links_in_commit(self):$/;"	m	class:TestPackagingInGitRepoWithCommit
-test_cmd_builder_override	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def test_cmd_builder_override(self):$/;"	m	class:BuildSphinxTest
-test_cmd_builder_override_multiple_builders	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def test_cmd_builder_override_multiple_builders(self):$/;"	m	class:BuildSphinxTest
-test_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/_setup_hooks.py	/^class test_command(build_py.build_py):$/;"	c
-test_console_script_develop	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^    def test_console_script_develop(self):$/;"	m	class:TestCore
-test_console_script_install	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^    def test_console_script_install(self):$/;"	m	class:TestCore
-test_content	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_pbr_json.py	/^    def test_content(self, mock_get_is, mock_get_git, mock_run):$/;"	m	class:TestJsonContent
-test_custom_build_py_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_commands.py	/^    def test_custom_build_py_command(self):$/;"	m	class:TestCommands
-test_custom_commands_known	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_hooks.py	/^    def test_custom_commands_known(self):$/;"	m	class:TestHooks
-test_custom_deb_version_py_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_commands.py	/^    def test_custom_deb_version_py_command(self):$/;"	m	class:TestCommands
-test_custom_rpm_version_py_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_commands.py	/^    def test_custom_rpm_version_py_command(self):$/;"	m	class:TestCommands
-test_data_directory_has_wsgi_scripts	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_data_directory_has_wsgi_scripts(self):$/;"	m	class:TestPackagingWheels
-test_data_files_globbing	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_files.py	/^    def test_data_files_globbing(self):$/;"	m	class:FilesConfigTest
-test_data_files_globbing_source_prefix_in_directory_name	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_files.py	/^    def test_data_files_globbing_source_prefix_in_directory_name(self):$/;"	m	class:FilesConfigTest
-test_data_files_with_spaces	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_files.py	/^    def test_data_files_with_spaces(self):$/;"	m	class:FilesConfigTest
-test_data_files_with_spaces_quoted_components	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_files.py	/^    def test_data_files_with_spaces_quoted_components(self):$/;"	m	class:FilesConfigTest
-test_data_files_with_spaces_subdirectories	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_files.py	/^    def test_data_files_with_spaces_subdirectories(self):$/;"	m	class:FilesConfigTest
-test_decrement_nonrelease	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_decrement_nonrelease(self):$/;"	m	class:TestSemanticVersion
-test_decrement_nonrelease_zero	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_decrement_nonrelease_zero(self):$/;"	m	class:TestSemanticVersion
-test_decrement_release	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_decrement_release(self):$/;"	m	class:TestSemanticVersion
-test_default_api_build_dir	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def test_default_api_build_dir(self):$/;"	m	class:APIAutoDocTest
-test_default_requirements	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_default_requirements(self):$/;"	m	class:ParseRequirementsTest
-test_dev_no_git_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_dev_no_git_version(self):$/;"	m	class:TestSemanticVersion
-test_dev_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_dev_version(self):$/;"	m	class:TestSemanticVersion
-test_dev_zero_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_dev_zero_version(self):$/;"	m	class:TestSemanticVersion
-test_different_api_build_dir	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def test_different_api_build_dir(self):$/;"	m	class:APIAutoDocTest
-test_egg_fragment	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_egg_fragment(self):$/;"	m	class:TestRepositoryURLDependencies
-test_email_parsing_errors_are_handled	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_email_parsing_errors_are_handled(self):$/;"	m	class:TestVersions
-test_empty_requirements	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_empty_requirements(self):$/;"	m	class:ParseRequirementsTest
-test_extras_parsing	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    def test_extras_parsing(self):$/;"	m	class:TestExtrasRequireParsingScenarios
-test_final_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_final_version(self):$/;"	m	class:TestSemanticVersion
-test_freeze_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_commands.py	/^    def test_freeze_command(self):$/;"	m	class:TestCommands
-test_from_pip_string_legacy_alpha	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_legacy_alpha(self):$/;"	m	class:TestSemanticVersion
-test_from_pip_string_legacy_no_0_prerelease	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_legacy_no_0_prerelease(self):$/;"	m	class:TestSemanticVersion
-test_from_pip_string_legacy_no_0_prerelease_2	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_legacy_no_0_prerelease_2(self):$/;"	m	class:TestSemanticVersion
-test_from_pip_string_legacy_non_440_beta	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_legacy_non_440_beta(self):$/;"	m	class:TestSemanticVersion
-test_from_pip_string_legacy_nonzero_lead_in	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_legacy_nonzero_lead_in(self):$/;"	m	class:TestSemanticVersion
-test_from_pip_string_legacy_postN	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_legacy_postN(self):$/;"	m	class:TestSemanticVersion
-test_from_pip_string_legacy_short_nonzero_lead_in	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_legacy_short_nonzero_lead_in(self):$/;"	m	class:TestSemanticVersion
-test_from_pip_string_non_digit_start	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_non_digit_start(self):$/;"	m	class:TestSemanticVersion
-test_from_pip_string_pure_git_hash	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_pure_git_hash(self):$/;"	m	class:TestSemanticVersion
-test_from_pip_string_v_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_from_pip_string_v_version(self):$/;"	m	class:TestSemanticVersion
-test_generate_authors	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def test_generate_authors(self):$/;"	m	class:GitLogsTest
-test_generate_script	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_generate_script(self):$/;"	m	class:TestPackagingHelpers
-test_generate_script_validates_expectations	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_generate_script_validates_expectations(self):$/;"	m	class:TestPackagingHelpers
-test_generates_c_extensions	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_generates_c_extensions(self):$/;"	m	class:TestPackagingWheels
-test_get_kwargs_corner_cases	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_get_kwargs_corner_cases(self):$/;"	m	class:TestVersions
-test_global_setup_hooks	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_hooks.py	/^    def test_global_setup_hooks(self):$/;"	m	class:TestHooks
-test_handling_of_whitespace_in_data_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    def test_handling_of_whitespace_in_data_files(self):$/;"	m	class:TestDataFilesParsing
-test_hook_1	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/_setup_hooks.py	/^def test_hook_1(config):$/;"	f
-test_hook_2	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/_setup_hooks.py	/^def test_hook_2(config):$/;"	f
-test_implicit_auto_package	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_files.py	/^    def test_implicit_auto_package(self):$/;"	m	class:FilesConfigTest
-test_increment_nonrelease	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_increment_nonrelease(self):$/;"	m	class:TestSemanticVersion
-test_increment_release	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_increment_release(self):$/;"	m	class:TestSemanticVersion
-test_index_present	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_index_present(self):$/;"	m	class:ParseRequirementsTest
-test_install_glob	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_install_glob(self):$/;"	m	class:TestExtrafileInstallation
-test_install_no_ChangeLog	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_install_no_ChangeLog(self):$/;"	m	class:TestPackagingInPlainDirectory
-test_install_without_pbr	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^    def test_install_without_pbr(self):$/;"	m	class:TestInstallWithoutPbr
-test_install_writes_changelog	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_install_writes_changelog(self):$/;"	m	class:TestPackagingInGitRepoWithCommit
-test_integration	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^    def test_integration(self):$/;"	m	class:TestIntegration
-test_invalid_marker_raises_error	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    def test_invalid_marker_raises_error(self):$/;"	m	class:TestInvalidMarkers
-test_invalid_tag_ignored	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_invalid_tag_ignored(self):$/;"	m	class:TestVersions
-test_keywords_parsing	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    def test_keywords_parsing(self):$/;"	m	class:TestKeywordsParsingScenarios
-test_lts_venv_default_versions	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^    def test_lts_venv_default_versions(self):$/;"	m	class:TestLTSSupport
-test_manifest_exclude_honoured	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_manifest_exclude_honoured(self):$/;"	m	class:TestPackagingInGitRepoWithCommit
-test_nested_requirements	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_nested_requirements(self):$/;"	m	class:ParseRequirementsTest
-test_non_canonical_tagged_version_bump	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_non_canonical_tagged_version_bump(self):$/;"	m	class:TestVersions
-test_ordering	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_ordering(self):$/;"	m	class:TestSemanticVersion
-test_override_with_env	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_override_with_env(self):$/;"	m	class:ParseRequirementsTest
-test_override_with_env_multiple_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_override_with_env_multiple_files(self):$/;"	m	class:ParseRequirementsTest
-test_parse_dependency_normal	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_parse_dependency_normal(self):$/;"	m	class:ParseDependencyLinksTest
-test_parse_dependency_with_git_egg_url	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_parse_dependency_with_git_egg_url(self):$/;"	m	class:ParseDependencyLinksTest
-test_parse_repo_url_dependency_links	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_parse_repo_url_dependency_links(self):$/;"	m	class:TestRepositoryURLDependencies
-test_parse_repo_url_requirements	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_parse_repo_url_requirements(self):$/;"	m	class:TestRepositoryURLDependencies
-test_parse_requirements	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_parse_requirements(self):$/;"	m	class:ParseRequirementsTestScenarios
-test_parsing_short_forms	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_parsing_short_forms(self):$/;"	m	class:TestSemanticVersion
-test_pip_versions	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_integration.py	/^    def test_pip_versions(self):$/;"	m	class:TestMarkersPip
-test_post_hook	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/_setup_hooks.py	/^def test_post_hook(cmdobj):$/;"	f
-test_pre_hook	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/pbr_testpackage/_setup_hooks.py	/^def test_pre_hook(cmdobj):$/;"	f
-test_preversion_too_low_semver_headers	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_preversion_too_low_semver_headers(self):$/;"	m	class:TestVersions
-test_preversion_too_low_simple	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_preversion_too_low_simple(self):$/;"	m	class:TestVersions
-test_project_url_parsing	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    def test_project_url_parsing(self):$/;"	m	class:TestMapFieldsParsingScenarios
-test_provides_extras	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    def test_provides_extras(self):$/;"	m	class:TestProvidesExtras
-test_rc_dev_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_rc_dev_version(self):$/;"	m	class:TestSemanticVersion
-test_rc_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_rc_version(self):$/;"	m	class:TestSemanticVersion
-test_requirement_parsing	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_requirement_parsing(self):$/;"	m	class:TestRequirementParsing
-test_sdist_extra_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^    def test_sdist_extra_files(self):$/;"	m	class:TestCore
-test_sdist_git_extra_files	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^    def test_sdist_git_extra_files(self):$/;"	m	class:TestGitSDist
-test_setup_py_build_sphinx	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^    def test_setup_py_build_sphinx(self):$/;"	m	class:TestCore
-test_setup_py_keywords	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_core.py	/^    def test_setup_py_keywords(self):$/;"	m	class:TestCore
-test_skip	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def test_skip(self):$/;"	m	class:SkipFileWrites
-test_skip_write_git_changelog	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_skip_write_git_changelog(self):$/;"	m	class:TestVersions
-test_tagged_version_has_tag_version	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_tagged_version_has_tag_version(self):$/;"	m	class:TestVersions
-test_tagged_version_with_semver_compliant_prerelease	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_tagged_version_with_semver_compliant_prerelease(self):$/;"	m	class:TestVersions
-test_to_dev	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_version.py	/^    def test_to_dev(self):$/;"	m	class:TestSemanticVersion
-test_untagged_pre_release_has_pre_dev_version_postversion	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_untagged_pre_release_has_pre_dev_version_postversion(self):$/;"	m	class:TestVersions
-test_untagged_version_after_pre_has_dev_version_preversion	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_untagged_version_after_pre_has_dev_version_preversion(self):$/;"	m	class:TestVersions
-test_untagged_version_after_rc_has_dev_version_preversion	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_untagged_version_after_rc_has_dev_version_preversion(self):$/;"	m	class:TestVersions
-test_untagged_version_after_semver_compliant_prerelease_tag	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_untagged_version_after_semver_compliant_prerelease_tag(self):$/;"	m	class:TestVersions
-test_untagged_version_has_dev_version_postversion	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_untagged_version_has_dev_version_postversion(self):$/;"	m	class:TestVersions
-test_untagged_version_has_dev_version_preversion	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_untagged_version_has_dev_version_preversion(self):$/;"	m	class:TestVersions
-test_untagged_version_major_bump	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_untagged_version_major_bump(self):$/;"	m	class:TestVersions
-test_untagged_version_minor_bump	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_untagged_version_minor_bump(self):$/;"	m	class:TestVersions
-test_utf8_description_file	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_util.py	/^    def test_utf8_description_file(self):$/;"	m	class:TestUTF8DescriptionFile
-test_valid_tag_honoured	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def test_valid_tag_honoured(self):$/;"	m	class:TestVersions
-test_with_argument	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_wsgi.py	/^    def test_with_argument(self):$/;"	m	class:TestWsgiScripts
-test_write_git_changelog	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_setup.py	/^    def test_write_git_changelog(self):$/;"	m	class:GitLogsTest
-test_wsgi_script_install	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_wsgi.py	/^    def test_wsgi_script_install(self):$/;"	m	class:TestWsgiScripts
-test_wsgi_script_run	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_wsgi.py	/^    def test_wsgi_script_run(self):$/;"	m	class:TestWsgiScripts
-testextmodule	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/testpackage/src/testext.c	/^static struct PyModuleDef testextmodule = {$/;"	v	typeref:struct:PyModuleDef	file:
+subprocess	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^import subprocess$/;"	i
+sys	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^import sys$/;"	i
+sys	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^import sys$/;"	i
+sys	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^import sys$/;"	i
+sys	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^import sys$/;"	i
+sys	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import sys$/;"	i
+sys	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^import sys$/;"	i
+sys	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import sys$/;"	i
+sys	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^import sys$/;"	i
+testr_command	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from pbr import testr_command$/;"	i
+time	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^import time$/;"	i
 time_ck_to_dt	dgnutils/__init__.py	/^def time_ck_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%d')$/;"	f
 time_created_to_ck	dgnutils/__init__.py	/^def time_created_to_ck(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z').strftime('%Y-%m-%d')$/;"	f
 time_created_to_dt	dgnutils/__init__.py	/^def time_created_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z')$/;"	f
@@ -570,19 +436,35 @@ time_mailchimp_to_dt	dgnutils/__init__.py	/^def time_mailchimp_to_dt(time: str):
 time_str_to_unix	dgnutils/__init__.py	/^def time_str_to_unix(string, string_format="%Y-%m-%d"): $/;"	f
 time_unix_to_dt	dgnutils/__init__.py	/^def time_unix_to_dt(unix): return datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc)$/;"	f
 time_unix_to_str	dgnutils/__init__.py	/^def time_unix_to_str(unix, string_format="%Y-%m-%dT%H:%M:%S"): return datetime.strftime(datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc), string_format)$/;"	f
+timedelta	build/lib/dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
+timedelta	dgnutils/__init__.py	/^from datetime import timedelta, date, datetime$/;"	i
 to_dev	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def to_dev(self, dev_count):$/;"	m	class:SemanticVersion
-uncommit	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    def uncommit(self):$/;"	m	class:TestRepo
+traceback	.eggs/pbr-5.4.4-py3.7.egg/pbr/util.py	/^import traceback$/;"	i
+unicode_literals	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^from __future__ import unicode_literals$/;"	i
+unicode_literals	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from __future__ import unicode_literals$/;"	i
 unix_to_datetime	dgnutils/__init__.py	/^def unix_to_datetime(unix): logging.warning('unix_to_datetime Deprecated; Use time_unit_to_dt'); return time_unix_to_dt(unix)$/;"	f
 unix_to_string	dgnutils/__init__.py	/^def unix_to_string(unix, string_format="%Y-%m-%dT%H:%M:%S"): logging.warning('unix_to_string Deprecated; Use time_unix_to_str'); return time_unix_to_str(unix, string_format=string_format)$/;"	f
 unquote_path	.eggs/pbr-5.4.4-py3.7.egg/pbr/hooks/files.py	/^def unquote_path(path):$/;"	f
+urlparse	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    from urllib.parse import urlparse$/;"	i
+urlparse	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    from urlparse import urlparse$/;"	i
 user_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    user_options = []$/;"	v	class:LocalDebVersion
 user_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^    user_options = []$/;"	v	class:LocalRPMVersion
 user_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    user_options = [$/;"	v	class:TestrReal
 user_options	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^    user_options = []$/;"	v	class:TestrFake
+util	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^        from pbr import util$/;"	i
+util	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^from pbr import util$/;"	i
+utils	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^            from docutils import utils$/;"	i
+version	.eggs/pbr-5.4.4-py3.7.egg/pbr/builddoc.py	/^from pbr import version$/;"	i
+version	.eggs/pbr-5.4.4-py3.7.egg/pbr/cmd/main.py	/^import pbr.version$/;"	i
+version	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^from pbr import version$/;"	i
+version	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^from pbr import version$/;"	i
+version	.eggs/pbr-5.4.4-py3.7.egg/pbr/sphinxext.py	/^import pbr.version$/;"	i
 version_string	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def version_string(self):$/;"	m	class:VersionInfo
 version_string_with_vcs	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    version_string_with_vcs = release_string$/;"	v	class:VersionInfo
 version_tuple	.eggs/pbr-5.4.4-py3.7.egg/pbr/version.py	/^    def version_tuple(self):$/;"	m	class:SemanticVersion
-versioned_scenarios	.eggs/pbr-5.4.4-py3.7.egg/pbr/tests/test_packaging.py	/^    versioned_scenarios = [$/;"	v	class:ParseRequirementsTestScenarios
+warnings	.eggs/pbr-5.4.4-py3.7.egg/pbr/core.py	/^import warnings$/;"	i
+warnings	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^import warnings$/;"	i
+warnings	.eggs/pbr-5.4.4-py3.7.egg/pbr/testr_command.py	/^import warnings$/;"	i
 write_git_changelog	.eggs/pbr-5.4.4-py3.7.egg/pbr/git.py	/^def write_git_changelog(git_dir=None, dest_dir=os.path.curdir,$/;"	f
 write_pbr_json	.eggs/pbr-5.4.4-py3.7.egg/pbr/packaging.py	/^write_pbr_json = pbr.pbr_json.write_pbr_json$/;"	v
 write_pbr_json	.eggs/pbr-5.4.4-py3.7.egg/pbr/pbr_json.py	/^def write_pbr_json(cmd, basename, filename):$/;"	f

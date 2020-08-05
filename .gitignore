@@ -1,5 +1,8 @@
 **.pyc
+*.pyc
+*.cpython-37.pyc
 **/.eggs/**
-**/.pycache/**
+**/.pycache
+**/__pycache__/**
 tags
 tags.lock

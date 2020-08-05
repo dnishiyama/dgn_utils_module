@@ -1,14 +1,33 @@
-import json, os, nbslack, pymysql, re, logging, pdb, pytz
-from enum import Enum, auto
-from datetime import timedelta, date, datetime
-from IPython.display import clear_output
+def module_exists(module_name):
+	try: __import__(module_name)
+	except ImportError: return False
+	else: return True
 
-print('02/18/20 dgnutils update loaded!')
+import sys, json, os, pymysql, re, logging, pdb, pytz, requests, pickle, math, urllib.parse, asks, trio
+import subprocess, time, itertools, unicodedata, bs4, asks, trio
+from collections import Counter, defaultdict
+from enum import Enum, auto, IntEnum
+from datetime import timedelta, date, datetime
+from IPython.display import clear_output, Image, display
+from typing import List, Tuple, Dict
+from numbers import Number
+
+if module_exists("nbslack"):
+	import nbslack
+	nbslack.notifying('dnishiyama', os.environ['SLACK_WEBHOOK'], error_handle=False)
+	def notify(text='Work'): nbslack.notify(f"{text}")
+else:
+	logging.warning('Unable to load slack webhook')
+	def notify(text=None): return
+
+asks.init("trio")
+
+print('08/04/20 dgnutils update loaded!')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
-#Tracing
-#pdb.set_trace()
+
+# Utility Function {{{
 
 #########################################  
 ########### UTILITY FUNCTIONS ###########
@@ -50,14 +69,8 @@ def created_to_dt(time: str): logging.warning('created_to_dt Deprecated; Use pre
 def created_at_conv(time: str): logging.warning('created_at_conv Deprecated; Use time_created_to_ck'); return time_created_to_ck(time);
 def mailchimp_conv(time: str): logging.warning('mailchimp_conv Deprecated; Use time_ck_to_dt'); return time_mailchimp_to_ck
 
-########### SLACK FUNCTIONS #############
-# Slack notification code
-try:
-	nbslack.notifying('dnishiyama', os.environ['SLACK_WEBHOOK'], error_handle=False)
-	def notify(text='Work'): nbslack.notify(f"{text}")
-except: 
-	logging.warn('Unable to load slack webhook')
-	def notify(text=None): return
+# }}} Utility Function
+
 
 ########### LOGGING FUNCTIONS #############
 def log_level(level=None):
@@ -84,6 +97,8 @@ def dgn_enum(_list:list):
 def get_json_columns(dict_, columns=["id"]):
 	return json.dumps({k:v for k,v in dict_.items() if k in columns})
 
+# MYSQL Functions {{{
+
 #########################################  
 ############ MYSQL FUNCTIONS ############
 #########################################
@@ -97,7 +112,7 @@ def connect(db='ck_info', **kwargs):
 	host = os.environ['RDS_CK_HOST'] if 'host' not in kwargs else kwargs['host']
 	user = os.environ['RDS_CK_USER'] if 'user' not in kwargs else kwargs['user']
 	password = os.environ['RDS_CK_PASSWORD'] if 'password' not in kwargs else kwargs['password']
-	cursorclass = pymysql.cursors.DictCursor if 'cursorclass' not in kwargs else kwargs['cursorclass']
+	cursorclass = pymysql.cursors.Cursor if 'cursorclass' not in kwargs else kwargs['cursorclass']
 
 	conn = pymysql.connect(user=user, password=password, host=host, database=database, cursorclass=cursorclass)#, ssl_disabled=True)
 	cursor = conn.cursor(); cursor.execute('SET NAMES utf8mb4;')
@@ -142,7 +157,7 @@ def d(self, sql_stmt, values=None, many=False):
 pymysql.cursors.DictCursor.d = d
 pymysql.cursors.Cursor.d = d
 
-def dict_insert(self, data_list:list, table:str):
+def dict_insert(self, data_list:list, table:str, batch_size:int=None):
 	"""
 	Insert a dictionary of data into mysql. On duplicate update. The keys must match the column names
 
@@ -150,6 +165,7 @@ def dict_insert(self, data_list:list, table:str):
 	==========
 	data_list (list(dict)): Must provide a list of dictionaries, where the dict keys match the col names
 	table (str): the table to insert the data into
+	batch_size (int): the size of the batches to use. If None, then will execute as one action
 
 	Returns
 	=======
@@ -167,8 +183,19 @@ def dict_insert(self, data_list:list, table:str):
 
 	# Prep and execute statement
 	sql_string = f'INSERT INTO {table} ({column_string}) VALUES ({variable_string}) {duplicate_string};'
-	logging.debug(f'dict_insert {len(values)} values: {[v for v in values[:2]]}')
-	return self.executemany(sql_string, values)
+	logging.debug(f'dict_insert {len(values)} values: {str([v for v in values[:2]])[:50]}')
+
+
+	if not batch_size:
+		self.executemany(sql_string, values)
+	else:
+		batches = math.ceil(len(values) / batch_size)
+		logging.debug(f'number of batches: {batches}')
+		for i in range(batches):
+			logging.debug(f'in insert(), updating sql, iteration: {i}')
+			values_batch = values[i*batch_size:(i+1)*batch_size]
+			self.executemany(sql_string, values_batch)
+
 pymysql.cursors.DictCursor.dict_insert = dict_insert
 pymysql.cursors.Cursor.dict_insert = dict_insert
 
@@ -195,6 +222,83 @@ def array_insert(self, data_list:list, columns:list, table:str):
 pymysql.cursors.DictCursor.array_insert = array_insert
 pymysql.cursors.Cursor.array_insert = array_insert
 
+
+# SQL commands {{{
+
+def execute_sql(cursor, sql):
+	"""Returns the fetchall() result after error catching"""
+	data = None
+	debug_sql = repr(re.sub(r"\s+", " ", sql))
+	# Show one line for logging.INFO and the full text for logging.DEBUG
+	if logging.getLogger().level == logging.DEBUG and len(debug_sql) > 80: 
+		debug_sql=debug_sql[:80]+'...'
+		logging.debug(f'Executing sql: {debug_sql}');
+	try:
+		cursor.execute(sql)
+		data = cursor.fetchall()
+	except mysql.connector.InternalError as ie:
+		logging.warning('Cursor already had content, trying to empty and then execute again')
+		cursor.fetchall()
+		cursor.execute(sql)
+		data = cursor.fetchall()
+		if hasattr(cursor, 'description'):
+			cursor.column_names = [t[0] for t in cursor.description]
+	return data
+
+# Old method before 7-16-20
+# def insert(cursor, table, replace=False, ignore=False, many=False, batch_size=50000, **kwargs):
+#	insert = 'REPLACE' if replace else 'INSERT'
+#	ignore = 'IGNORE' if ignore else ''
+#	columns = [str(k) for k,v in kwargs.items()]
+#	col_text = '('+', '.join(columns)+')'
+#	val_text = ', '.join(['%s']*len(kwargs))
+#	sql_command = f'{insert} {ignore} INTO {table}{col_text} VALUES ({val_text})'
+# 
+#	if not many: #single insert
+#		values = list(kwargs.values())
+#		logging.debug(f'inserting {values} into {sql_command}')
+#		cursor.execute(sql_command, values)
+#	else: #multiple insert
+#		values = list(zip(*kwargs.values())) #get each crosssection of arrays
+#		batches = math.ceil(len(values) / batch_size)
+#		logging.debug(f'number of batches: {batches}')
+#		for i in range(batches):
+#			logging.debug(f'in insert(), updating sql, iteration: {i}')
+#			values_batch = values[i*batch_size:(i+1)*batch_size]
+#			cursor.executemany(sql_command, values_batch)
+
+def insert(cursor, table, replace=False, ignore=False, many=False, batch_size=50000, **kwargs):
+	# print(kwargs)
+	insert = 'REPLACE' if replace else 'INSERT'
+	ignore = 'IGNORE' if ignore else ''
+	columns = [str(k) for k,v in kwargs.items()]
+	col_text = '('+', '.join(columns)+')'
+	val_text = ', '.join(['%s']*len(kwargs))
+	sql_command = f'{insert} {ignore} INTO {table}{col_text} VALUES ({val_text})'
+
+	if not many: #single insert
+		values = list(kwargs.values())
+		logging.debug(f'inserting {values} into {sql_command}')
+		cursor.e(sql_command, values)
+	else:
+		values = tuple(zip(*kwargs.values())) #get each crosssection of arrays
+		batches = math.ceil(len(values) / batch_size)
+		logging.debug(f'number of batches: {batches}')
+		for i in range(batches):
+			logging.debug(f'in insert(), updating sql, iteration: {i}')
+			values_batch = values[i*batch_size:(i+1)*batch_size]
+			cursor.executemany(sql_command, values_batch)
+
+def update(cursor, table, entry_id, **kwargs):		
+	update_text = ', '.join([k+'=%s' for k in kwargs])
+	sql_command = f'UPDATE {table} SET {update_text} WHERE entry_id={entry_id}'
+	values = list(kwargs.values())
+	logging.debug(f'updating: {sql_command} with {values}')
+	cursor.execute(sql_command, values)
+
+
+# }}} SQL commands
+
 # array_insert tests
 #table='TEST_subscriber_data_list'
 #data_list=[[803,'', 'test', None, None, None, None, None, None, None, None,None,None,None,None,None],
@@ -211,3 +315,29 @@ def print_array(array:list):
 def mysql_array(array:list):
 	if not array: return '(NULL)'
 	return '(' + ', '.join([repr(a) for a in array]) + ')'
+
+def database_sizes(cursor, exclude_zero=True):
+	db_sizes={}
+	for table in [list(v.values())[0] for v in cursor.d('SHOW TABLES;')]:
+		db_sizes[table] = cursor.d(f'SELECT COUNT(*) as c FROM {table};')[0]['c']
+	if exclude_zero:
+		db_sizes = {k:v for k,v in db_sizes.items() if v != 0}
+	return db_sizes
+
+
+def refresh_tables(cursor, exclude:list):
+	"""
+	drop all tables, except those included in `exclude`
+	Then reinstert them based on the `SHOW CREATE TABLE statements`
+	"""
+	create_table_stmts=[]
+	tables = [d[0] for d in cursor.e('SHOW TABLES;')]
+	logging.info(f'Recreating all tables EXCEPT etymologies and languages')
+	for table in tables:
+		if table not in exclude: 
+			create_table_stmt = cursor.d(f'SHOW CREATE TABLE {table}')[0]['Create Table']
+			logging.debug(f'Recreating table {table}')
+			cursor.e(f'DROP TABLE IF EXISTS {table}')
+			cursor.e(create_table_stmt)
+
+# MYSQL Functions }}}

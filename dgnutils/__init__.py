@@ -324,6 +324,24 @@ def database_sizes(cursor, exclude_zero=True):
 		db_sizes = {k:v for k,v in db_sizes.items() if v != 0}
 	return db_sizes
 
+def copy_tables(cursor, copy_from_database, copy_to_database):
+	"""
+	drop all tables
+	Then insert them from the other source based on the `SHOW CREATE TABLE {table}`
+	"""
+	database_in_use = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0]
+	create_table_stmts=[]
+	cursor.e(f'DROP DATABASE IF EXISTS {copy_to_database}')
+	cursor.e(f'CREATE DATABASE {copy_to_database}')
+	tables = [d[0] for d in cursor.e(f'SHOW TABLES FROM {copy_from_database};')]
+	logging.info(f'Recreating all tables')
+	cursor.e(f'USE {copy_to_database}')
+	for table in tables:
+		create_table_stmt = cursor.d(f'SHOW CREATE TABLE {copy_from_database}.{table}')[0]['Create Table']
+		logging.debug(f'Recreating table {table}')
+		cursor.e(create_table_stmt)
+	cursor.e(f'USE {database_in_use}')
+
 
 def refresh_tables(cursor, exclude:list):
 	"""
@@ -332,7 +350,7 @@ def refresh_tables(cursor, exclude:list):
 	"""
 	create_table_stmts=[]
 	tables = [d[0] for d in cursor.e('SHOW TABLES;')]
-	logging.info(f'Recreating all tables EXCEPT etymologies and languages')
+	logging.info(f'Recreating all tables EXCEPT {exclude}')
 	for table in tables:
 		if table not in exclude: 
 			create_table_stmt = cursor.d(f'SHOW CREATE TABLE {table}')[0]['Create Table']

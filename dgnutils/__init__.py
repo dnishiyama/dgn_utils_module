@@ -97,6 +97,15 @@ def dgn_enum(_list:list):
 def get_json_columns(dict_, columns=["id"]):
 	return json.dumps({k:v for k,v in dict_.items() if k in columns})
 
+def getInt(val, default=None):
+    """
+    try to get an int from val, return `default` if fails
+    """
+    try:
+        return int(val)
+    except ValueError as v:
+        return default
+
 # MYSQL Functions {{{
 
 #########################################  

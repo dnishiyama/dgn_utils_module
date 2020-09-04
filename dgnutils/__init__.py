@@ -22,7 +22,7 @@ else:
 
 asks.init("trio")
 
-print('08/04/20 dgnutils update loaded!')
+print('08/31/20 dgnutils update loaded!')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -316,12 +316,24 @@ def mysql_array(array:list):
 	if not array: return '(NULL)'
 	return '(' + ', '.join([repr(a) for a in array]) + ')'
 
-def database_sizes(cursor, exclude_zero=True):
+def database_sizes(cursor, exclude_zero=True, estimate=False):
 	db_sizes={}
+	if estimate:
+		database = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0] 
+		sql_stmt = f"""
+		SELECT table_name AS "Table",
+		ROUND(((data_length + index_length) / 1024 / 1024), 2) AS "Size (MB)"
+		FROM information_schema.TABLES
+		WHERE table_schema = "{database}"
+		ORDER BY (data_length + index_length) DESC;
+		"""
+		return { d[0] : f"{d[1]} MB" for d in cursor.e(sql_stmt) }
+
 	for table in [list(v.values())[0] for v in cursor.d('SHOW TABLES;')]:
 		db_sizes[table] = cursor.d(f'SELECT COUNT(*) as c FROM {table};')[0]['c']
-	if exclude_zero:
-		db_sizes = {k:v for k,v in db_sizes.items() if v != 0}
+
+	if exclude_zero: return {k:v for k,v in db_sizes.items() if v != 0}
+
 	return db_sizes
 
 def copy_tables(cursor, copy_from_database, copy_to_database):

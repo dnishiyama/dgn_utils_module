@@ -2,6 +2,7 @@
 *.pyc
 *.cpython-37.pyc
 **/.eggs/**
+*.egg-info/
 **/.pycache
 **/__pycache__/**
 tags

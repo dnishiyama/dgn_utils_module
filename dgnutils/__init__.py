@@ -22,7 +22,7 @@ else:
 
 asks.init("trio")
 
-print('08/31/20 dgnutils update loaded!')
+print('09/04/20 dgnutils update loaded!')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 

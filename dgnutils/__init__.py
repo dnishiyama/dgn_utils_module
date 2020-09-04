@@ -106,24 +106,36 @@ def getInt(val, default=None):
     except ValueError as v:
         return default
 
+def permutations(l):
+	comb = []
+	for r in range(2,len(l)+1):
+		comb += list(itertools.permutations(l, r))
+	return comb
+
+def combinations(l):
+	comb = []
+	for r in range(2,len(l)+1):
+		comb += list(itertools.combinations(l, r))
+	return comb
+
 # MYSQL Functions {{{
 
 #########################################  
 ############ MYSQL FUNCTIONS ############
 #########################################
 
-def connect(db='ck_info', **kwargs):
-	#if db in ['staging', 'stage', 'etymology_explorer_staging']: database = 'etymology_explorer_staging'
-	#elif db in ['training', 'train', 'training_data']: database = 'training_data'
-	#elif db in ['all', '', 'full', 'normal', 'etymology_explorer', 'live']: database = 'etymology_explorer'
-	database = db;
+def connect(db = 'staging', **kwargs):
+	if db in ['staging', 'stage', 'etymology_explorer_staging']: database = 'etymology_explorer_staging'
+	elif db in ['training', 'train', 'training_data']: database = 'training_data'
+	elif db in ['all', '', 'full', 'normal', 'etymology_explorer', 'live']: database = 'etymology_explorer'
+	else: database = db;
 
-	host = os.environ['RDS_CK_HOST'] if 'host' not in kwargs else kwargs['host']
-	user = os.environ['RDS_CK_USER'] if 'user' not in kwargs else kwargs['user']
-	password = os.environ['RDS_CK_PASSWORD'] if 'password' not in kwargs else kwargs['password']
-	cursorclass = pymysql.cursors.Cursor if 'cursorclass' not in kwargs else kwargs['cursorclass']
+	host = 'localhost' if 'host' not in kwargs else kwargs['host']
+	user = os.environ['MYSQL_DB_USER'] if 'user' not in kwargs else kwargs['user']
+	password = os.environ['MYSQL_DB_PASSWORD'] if 'password' not in kwargs else kwargs['password']
+	cursorclass = pymysql.cursors.Cursor if 'cursorclass' not in kwargs else kwargs['cursorclass'] #pymysql.cursors.DictCursor
 
-	conn = pymysql.connect(user=user, password=password, host=host, database=database, cursorclass=cursorclass)#, ssl_disabled=True)
+	conn = pymysql.connect(user=user, password=password, host=host, database=database, cursorclass=cursorclass)
 	cursor = conn.cursor(); cursor.execute('SET NAMES utf8mb4;')
 	return conn, cursor
 

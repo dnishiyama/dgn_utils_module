@@ -1,5 +1,7 @@
 from dgnutils import *
 
+# https://nedbatchelder.com/text/test3.html
+
 def test_imports():
 	assert True
 

@@ -20,8 +20,6 @@ else:
 	logging.warning('Unable to load slack webhook')
 	def notify(text=None): return
 
-asks.init("trio")
-
 print('09/25/20 dgnutils update loaded!')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
@@ -416,5 +414,22 @@ def refresh_tables(cursor, exclude:list):
 			logging.debug(f'Recreating table {table}')
 			cursor.e(f'DROP TABLE IF EXISTS {table}')
 			cursor.e(create_table_stmt)
+
+def restore_missing_tables(cursor, source_database):
+	"""
+	if the database_to_check is missing any tables from source_database, then copy it over
+	Then insert them from the other source based on the `SHOW CREATE TABLE {table}`
+	"""
+	database_in_use = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0]
+	existing_tables = [t[0] for t in cursor.e('SHOW TABLES;')]
+	all_tables = [t[0] for t in cursor.e('SHOW TABLES FROM etymology_explorer_dev;')]
+	missing_tables = [t for t in all_tables if t not in existing_tables]
+	for table in missing_tables:
+		create_table_stmt = cursor.d(f'SHOW CREATE TABLE {source_database}.{table}')[0]['Create Table']
+		logging.debug(f'Recreating table {table}')
+		cursor.e(f'USE {database_in_use}')
+		cursor.e(create_table_stmt)
+	cursor.e(f'USE {database_in_use}')
+
 
 # MYSQL Functions }}}

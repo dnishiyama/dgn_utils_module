@@ -22,7 +22,7 @@ else:
 
 asks.init("trio")
 
-print('09/04/20 dgnutils update loaded!')
+print('09/25/20 dgnutils update loaded!')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -68,6 +68,9 @@ def string_to_unix(string, string_format="%Y-%m-%d"): logging.warning('string_to
 def created_to_dt(time: str): logging.warning('created_to_dt Deprecated; Use prefix time_'); return time_created_to_dt(time);
 def created_at_conv(time: str): logging.warning('created_at_conv Deprecated; Use time_created_to_ck'); return time_created_to_ck(time);
 def mailchimp_conv(time: str): logging.warning('mailchimp_conv Deprecated; Use time_ck_to_dt'); return time_mailchimp_to_ck
+
+### Dictionary helpers
+def dict_head(dictionary, num_items): return {k:v for i,(k,v) in enumerate(dictionary.items()) if i < num_items}
 
 # }}} Utility Function
 
@@ -117,6 +120,29 @@ def combinations(l):
 	for r in range(2,len(l)+1):
 		comb += list(itertools.combinations(l, r))
 	return comb
+
+# reExport = re.compile(r'^\s*export ([A-Z0-9_]+)=[\'\"](.*?)[\'\"]\s*$')
+reExport = re.compile(r'^[^#]*?export ([A-Z0-9_]+)=[\'\"](.*?)[\'\"]\s*$') # more clear check for comments
+def extract_sh_exports(file_path):
+	"""
+	Take a shell file and extract the exports. Returns a dictionary, which can be updated onto os.environ
+	"""
+	# '/gdrive/My Drive/development/.dgn_secrets'
+	exports = {}
+	with open(file_path, 'r') as file:
+		for line in file:
+			export_match = reExport.match(line)
+			if export_match:
+				exports[export_match.group(1)] = export_match.group(2)
+  return exports
+
+def test_extract_sh_exports():
+	assert reExport.match("export RDS_CK_HOST='test token!@#ASDFasdf123[]''")
+	assert reExport.match("export RDS_CK_HOST='test token!@#ASDFasdf123[]''").group(1) == 'RDS_CK_HOST'
+	assert reExport.match("export RDS_CK_HOST='test token!@#ASDFasdf123[]''").group(2) == 'test token!@#ASDFasdf123[]\''
+	assert reExport.match("export NOTION_TOKEN_V2='test token!@#ASDFasdf123[]\''")
+	assert not reExport.match('#export REDDIT_MESSAGER_CLIENT_ID="test token!@#ASDFasdf123[]"')
+	assert not reExport.match('# export REDDIT_MESSAGER_CLIENT_SECRET="test token!@#ASDFasdf123[]\'"')
 
 # MYSQL Functions {{{
 

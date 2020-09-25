@@ -4,7 +4,7 @@ def module_exists(module_name):
 	else: return True
 
 import sys, json, os, pymysql, re, logging, pdb, pytz, requests, pickle, math, urllib.parse, asks, trio
-import subprocess, time, itertools, unicodedata, bs4, asks, trio
+import subprocess, time, itertools, unicodedata, bs4
 from collections import Counter, defaultdict
 from enum import Enum, auto, IntEnum
 from datetime import timedelta, date, datetime
@@ -134,7 +134,7 @@ def extract_sh_exports(file_path):
 			export_match = reExport.match(line)
 			if export_match:
 				exports[export_match.group(1)] = export_match.group(2)
-  return exports
+	return exports
 
 def test_extract_sh_exports():
 	assert reExport.match("export RDS_CK_HOST='test token!@#ASDFasdf123[]''")

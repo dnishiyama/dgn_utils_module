@@ -431,5 +431,17 @@ def restore_missing_tables(cursor, source_database):
 		cursor.e(create_table_stmt)
 	cursor.e(f'USE {database_in_use}')
 
+	def close_connections(db_name):
+		ids = [
+			p['Id'] 
+			for p in dev_cursor.d('SHOW PROCESSLIST;') 
+			if p['db']==db_name
+			and (not p['Info'] or 'SHOW PROCESSLIST' not in p['Info'])
+		]
+		sql_stmts = [f'KILL {id};' for id in ids]; sql_stmts
+		for sql_stmt in sql_stmts:
+			dev_cursor.e(sql_stmt)
+		logging.info(f'Closed {len(sql_stmts)} connections to {db_name}')
+
 
 # MYSQL Functions }}}

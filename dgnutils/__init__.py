@@ -152,11 +152,12 @@ def connect(db = 'staging', **kwargs):
 	if db in ['staging', 'stage', 'etymology_explorer_staging']: database = 'etymology_explorer_staging'
 	elif db in ['training', 'train', 'training_data']: database = 'training_data'
 	elif db in ['all', '', 'full', 'normal', 'etymology_explorer', 'live']: database = 'etymology_explorer'
-	else: database = db;
-
-	host = 'localhost' if 'host' not in kwargs else kwargs['host']
+	else: database = db
 	user = os.environ['MYSQL_DB_USER'] if 'user' not in kwargs else kwargs['user']
 	password = os.environ['MYSQL_DB_PASSWORD'] if 'password' not in kwargs else kwargs['password']
+	host = os.environ['MYSQL_DB_HOST'] if 'host' not in kwargs else kwargs['host']
+	# user = os.environ['MYSQL_DB_USER'] if 'user' not in kwargs else kwargs['user']
+	# password = os.environ['MYSQL_DB_PASSWORD'] if 'password' not in kwargs else kwargs['password']
 	cursorclass = pymysql.cursors.Cursor if 'cursorclass' not in kwargs else kwargs['cursorclass'] #pymysql.cursors.DictCursor
 
 	conn = pymysql.connect(user=user, password=password, host=host, database=database, cursorclass=cursorclass)
@@ -381,10 +382,11 @@ def database_sizes(cursor, exclude_zero=True, estimate=False):
 
 	return db_sizes
 
-def copy_tables(cursor, copy_from_database, copy_to_database):
+def copy_tables(cursor, copy_from_database, copy_to_database, contents=[]):
 	"""
-	drop all tables
+	drop all tables (by dropping the database)
 	Then insert them from the other source based on the `SHOW CREATE TABLE {table}`
+	:param contents: list of tables to copy over content as well
 	"""
 	database_in_use = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0]
 	create_table_stmts=[]
@@ -397,29 +399,34 @@ def copy_tables(cursor, copy_from_database, copy_to_database):
 		create_table_stmt = cursor.d(f'SHOW CREATE TABLE {copy_from_database}.{table}')[0]['Create Table']
 		logging.debug(f'Recreating table {table}')
 		cursor.e(create_table_stmt)
+		if table in contents:
+			cursor.e(f'INSERT INTO {copy_to_database}.{table} SELECT * FROM {copy_from_database}.{table}')
 	cursor.e(f'USE {database_in_use}')
 
-
-def refresh_tables(cursor, exclude:list):
+def refresh_tables(cursor, exclude:list, keep_contents=[]):
 	"""
 	drop all tables, except those included in `exclude`
 	Then reinstert them based on the `SHOW CREATE TABLE statements`
+	:param keep_contents: list of tables to copy over content as well
 	"""
 	create_table_stmts=[]
 	tables = [d[0] for d in cursor.e('SHOW TABLES;')]
 	logging.info(f'Recreating all tables EXCEPT {exclude}')
 	for table in tables:
-		if table not in exclude: 
-			create_table_stmt = cursor.d(f'SHOW CREATE TABLE {table}')[0]['Create Table']
-			logging.debug(f'Recreating table {table}')
-			cursor.e(f'DROP TABLE IF EXISTS {table}')
-			cursor.e(create_table_stmt)
+		if table in exclude: continue
+		if table in keep_contents:
+			data = cursor.d(f'SELECT * FROM {table}')
+		create_table_stmt = cursor.d(f'SHOW CREATE TABLE {table}')[0]['Create Table']
+		logging.debug(f'Recreating table {table}')
+		cursor.e(f'DROP TABLE IF EXISTS {table}')
+		cursor.e(create_table_stmt)
+		if table in keep_contents:
+			cursor.dict_insert(data, table)
 
-def restore_missing_tables(cursor, source_database, contents=[]):
+def restore_missing_tables(cursor, source_database):
 	"""
 	if the database_to_check is missing any tables from source_database, then copy it over
 	Then insert them from the other source based on the `SHOW CREATE TABLE {table}`
-	:param contents: list of tables to copy over content as well
 	"""
 	database_in_use = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0]
 	existing_tables = [t[0] for t in cursor.e('SHOW TABLES;')]
@@ -430,8 +437,6 @@ def restore_missing_tables(cursor, source_database, contents=[]):
 		logging.debug(f'Recreating table {table}')
 		cursor.e(f'USE {database_in_use}')
 		cursor.e(create_table_stmt)
-		if table in contents:
-			cursor.e(f'INSERT INTO {table} SELECT * FROM etymology_explorer_prod.{table}')
 	cursor.e(f'USE {database_in_use}')
 
 def close_connections(cursor, db_name):
@@ -445,6 +450,5 @@ def close_connections(cursor, db_name):
 	for sql_stmt in sql_stmts:
 		cursor.e(sql_stmt)
 	logging.info(f'Closed {len(sql_stmts)} connections to {db_name}')
-
 
 # MYSQL Functions }}}

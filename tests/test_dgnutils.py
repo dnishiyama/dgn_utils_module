@@ -11,6 +11,65 @@ def test_time_functions():
 def test_extract_re():
 	assert test_extract_sh_exports()==None
 
+def test_db_functions():
+	data = {'user':os.environ['RDS_ETY_USER'], 'password':os.environ['RDS_ETY_PASSWORD'], 'host': os.environ['RDS_ETY_HOST']}
+	test_db = 'etymology_explorer_test'
+	dev_db = 'etymology_explorer_dev'
+	test_conn, test_cursor = connect(test_db , **data)
+	dev_conn, dev_cursor = connect(dev_db , **data)
+	dev_tables_count = len(dev_cursor.e('SHOW TABLES;'))
+
+	assert [t['db'] for t in test_cursor.d('SHOW PROCESSLIST')].count('etymology_explorer_test') > 0
+
+	close_connections(test_cursor, 'etymology_explorer_test')
+	assert [t['db'] for t in test_cursor.d('SHOW PROCESSLIST') if t['Info']!='SHOW PROCESSLIST'].count('etymology_explorer_test') == 0
+
+	print('\nTesting copy_tables with contents=[table_to_drop]')
+	table_to_drop = 'languages'
+	copy_tables(test_cursor, dev_db, test_db, contents=[table_to_drop])
+	test_tables_count = len(test_cursor.e('SHOW TABLES;'))
+	test_languages_length = test_cursor.e('SELECT COUNT(*) FROM languages')[0][0]
+	dev_languages_length = dev_cursor.e('SELECT COUNT(*) FROM languages')[0][0]
+	assert test_tables_count == dev_tables_count
+	assert test_languages_length == dev_languages_length
+
+	print('Testing refresh_tables with keep_contents=[table_to_drop]')
+	refresh_tables(test_cursor, exclude=[], keep_contents=[table_to_drop])
+	test_languages_length = test_cursor.e('SELECT COUNT(*) FROM languages')[0][0]
+	test_tables_count = len(test_cursor.e('SHOW TABLES;'))
+	assert test_tables_count == dev_tables_count
+	assert test_languages_length == dev_languages_length
+
+	print('Testing refresh_tables with contents=[]')
+	refresh_tables(test_cursor, exclude=[])
+	test_languages_length = test_cursor.e('SELECT COUNT(*) FROM languages')[0][0]
+	test_tables_count = len(test_cursor.e('SHOW TABLES;'))
+	assert test_tables_count == dev_tables_count
+	assert test_languages_length == 0
+
+	print('Dropping languages table')
+	test_cursor.e(f'DROP TABLE IF EXISTS {table_to_drop}')
+	test_tables_count = len(test_cursor.e('SHOW TABLES;'))
+	assert test_tables_count < dev_tables_count
+
+	print('Testing restore_missing_tables')
+	restore_missing_tables(test_cursor, dev_db)
+	test_languages_length = test_cursor.e('SELECT COUNT(*) FROM languages')[0][0]
+	test_tables_count = len(test_cursor.e('SHOW TABLES;'))
+	assert test_tables_count == dev_tables_count
+	assert test_languages_length == 0
+
+	print('Testing copy_tables with contents=[table_to_drop]')
+	copy_tables(test_cursor, dev_db, test_db, contents=[table_to_drop])
+	test_languages_length = test_cursor.e('SELECT COUNT(*) FROM languages')[0][0]
+	test_tables_count = len(test_cursor.e('SHOW TABLES;'))
+	assert test_tables_count == dev_tables_count
+	assert test_languages_length == dev_languages_length
+
+	sizes = database_sizes(test_cursor, estimate=True)
+
+
+
 #def time_ck_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%d')
 #def time_dt_to_ck(dt): return datetime.strftime(dt, '%Y-%m-%d')
 #def time_created_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%dT%H:%M:%S.000Z')

@@ -415,10 +415,11 @@ def refresh_tables(cursor, exclude:list):
 			cursor.e(f'DROP TABLE IF EXISTS {table}')
 			cursor.e(create_table_stmt)
 
-def restore_missing_tables(cursor, source_database):
+def restore_missing_tables(cursor, source_database, contents=[]):
 	"""
 	if the database_to_check is missing any tables from source_database, then copy it over
 	Then insert them from the other source based on the `SHOW CREATE TABLE {table}`
+	:param contents: list of tables to copy over content as well
 	"""
 	database_in_use = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0]
 	existing_tables = [t[0] for t in cursor.e('SHOW TABLES;')]
@@ -429,6 +430,8 @@ def restore_missing_tables(cursor, source_database):
 		logging.debug(f'Recreating table {table}')
 		cursor.e(f'USE {database_in_use}')
 		cursor.e(create_table_stmt)
+		if table in contents:
+			cursor.e(f'INSERT INTO {table} SELECT * FROM etymology_explorer_prod.{table}')
 	cursor.e(f'USE {database_in_use}')
 
 def close_connections(cursor, db_name):

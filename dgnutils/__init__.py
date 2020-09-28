@@ -382,13 +382,17 @@ def database_sizes(cursor, exclude_zero=True, estimate=False):
 
 	return db_sizes
 
-def copy_tables(cursor, copy_from_database, copy_to_database, contents=[]):
+def copy_tables(cursor, copy_from_database, copy_to_database=None, contents=[]):
 	"""
 	drop all tables (by dropping the database)
 	Then insert them from the other source based on the `SHOW CREATE TABLE {table}`
+	:param copy_from_database: The database to replicate
+	:param copy_to_database: if not provided, then defaults to the database in use
 	:param contents: list of tables to copy over content as well
 	"""
 	database_in_use = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0]
+	if not copy_to_database:
+		copy_to_database = database_in_use
 	create_table_stmts=[]
 	cursor.e(f'DROP DATABASE IF EXISTS {copy_to_database}')
 	cursor.e(f'CREATE DATABASE {copy_to_database}')

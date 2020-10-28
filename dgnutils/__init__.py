@@ -20,7 +20,8 @@ else:
 	logging.warning('Unable to load slack webhook')
 	def notify(text=None): return
 
-print('09/25/20 dgnutils update loaded!')
+asks.init('trio')
+print('10/02/20 dgnutils update loaded! Added getFloat')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -104,6 +105,15 @@ def getInt(val, default=None):
     """
     try:
         return int(val)
+    except ValueError as v:
+        return default
+
+def getFloat(val, default=None):
+    """
+    try to get an float from val, return `default` if fails
+    """
+    try:
+        return float(val)
     except ValueError as v:
         return default
 

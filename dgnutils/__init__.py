@@ -21,7 +21,7 @@ else:
 	def notify(text=None): return
 
 asks.init('trio')
-print('10/02/20 dgnutils update loaded! Added getFloat')
+print('1/5/21 dgnutils update loaded! Updated dict_insert')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -215,7 +215,7 @@ pymysql.cursors.Cursor.d = d
 
 def dict_insert(self, data_list:list, table:str, batch_size:int=None):
 	"""
-	Insert a dictionary of data into mysql. On duplicate update. The keys must match the column names
+	Insert a dictionary of data into mysql. On duplicate update. The keys must match the column names. If a key is missing, the value defaults to None (NULL) in SQL
 
 	Parameters
 	==========
@@ -231,8 +231,9 @@ def dict_insert(self, data_list:list, table:str, batch_size:int=None):
 	if type(data_list) not in [list, tuple]: raise TypeError('dict_insert must receive a list of dictionaries')
 	if type(data_list[0]) != dict: raise TypeError('dict_insert must receive a list of dictionaries')
 
-	columns = list(data_list[0].keys())
-	values = [[d[c] for c in columns] for d in data_list]
+	# updated columns fn on 1-5-21 to allow different columns in each row
+	columns = list(set(k for e in data_list for k in list(e)))
+	values = [[d.get(c) for c in columns] for d in data_list]
 	column_string = ", ".join(["`"+col+"`" for col in columns])
 	variable_string = ", ".join(["%s"]*len(columns))
 	duplicate_string = f'ON DUPLICATE KEY UPDATE {", ".join(["`"+c+"`=VALUES(`"+c+"`)" for c in columns])}'

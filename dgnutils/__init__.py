@@ -21,7 +21,7 @@ else:
 	def notify(text=None): return
 
 asks.init('trio')
-print('1/5/21 dgnutils update loaded! Updated dict_insert')
+print('1/6/21 dgnutils update loaded! Added more mysql db functions')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -31,6 +31,22 @@ print('1/5/21 dgnutils update loaded! Updated dict_insert')
 #########################################  
 ########### UTILITY FUNCTIONS ###########
 #########################################
+
+def color(text, color):
+	e = '\x1b[0m'
+	c = {
+		'red': '\x1b[1;31m',
+		'red_light':'\x1b[31m',
+		'teal':'\x1b[1;96m',
+		'teal_light': '\x1b[96m',
+		'purple': '\x1b[1;95m',
+		'purple_light': '\x1b[95m',
+		'blue': '\x1b[1;94m',
+		'blue_light': '\x1b[94m',
+		'black': '\x1b[1;30m',
+	}
+	if not color in c: raise Exception(f'No color for {color}')
+	return f'{c[color]}{text}{e}'
 
 ########### TIME CONVERSIONS ############
 def time_days_ago(days=0): return datetime.now(tz=pytz.timezone('US/Eastern')) - timedelta(days=days)
@@ -465,5 +481,35 @@ def close_connections(cursor, db_name):
 	for sql_stmt in sql_stmts:
 		cursor.e(sql_stmt)
 	logging.info(f'Closed {len(sql_stmts)} connections to {db_name}')
+
+def compare_databases(cursor, database0, database1):
+	"""
+	See the differences between databases in table structure
+	"""
+	name0 = ''.join([d for i,d in enumerate(database0) if len(database1) > i and database1[i] != d])
+	name1 = ''.join([d for i,d in enumerate(database1) if len(database0) > i and database0[i] != d])
+	create_table_stmts={0:{}, 1:{}}
+	for i,db in enumerate([database0, database1]):
+		tables = [d[0] for d in cursor.e(f'SHOW TABLES FROM {db};')]
+		for table in tables:
+			create_table_stmts[i][table] = cursor.d(f'SHOW CREATE TABLE {db}.{table}')[0]['Create Table'].split('\n')
+			
+	only_db_0_tables = list(set(create_table_stmts[0]) - set(create_table_stmts[1]))
+	only_db_1_tables = list(set(create_table_stmts[1]) - set(create_table_stmts[0]))
+	print(color(f'"{name0}"-only tables {only_db_0_tables}', 'purple_light'))
+	print(color(f'"{name1}"-only tables {only_db_1_tables}', 'blue_light'))
+	print()
+		
+	matching_tables = set(create_table_stmts[0]) & set(create_table_stmts[1])
+	for table in matching_tables:
+		if create_table_stmts[0][table] != create_table_stmts[1][table]:
+			print(f'"{table}" differences')
+			for line in create_table_stmts[0][table]:
+				if line not in create_table_stmts[1][table]:
+					print(color(f'{name0}: {line}', 'purple_light'))
+			for line in create_table_stmts[1][table]:
+				if line not in create_table_stmts[0][table]:
+					print(color(f'{name1}: {line}', 'blue_light'))
+			print()
 
 # MYSQL Functions }}}

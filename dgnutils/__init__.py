@@ -257,7 +257,7 @@ def d(self, sql_stmt, values=None, many=False):
 pymysql.cursors.DictCursor.d = d
 pymysql.cursors.Cursor.d = d
 
-def dict_insert(self, data_list:list[dict], table:str, batch_size:int=None):
+def dict_insert(self, data_list:'list[dict]', table:str, batch_size:int=None):
 	"""
 	Insert a dictionary of data into mysql. 
 	Allows updates via (On duplicate update)
@@ -303,7 +303,7 @@ def dict_insert(self, data_list:list[dict], table:str, batch_size:int=None):
 pymysql.cursors.DictCursor.dict_insert = dict_insert
 pymysql.cursors.Cursor.dict_insert = dict_insert
 
-def dict_delete(self, data_list:list[dict], table:str, batch_size:int=1000):
+def dict_delete(self, data_list:'list[dict]', table:str, batch_size:int=1000):
 	"""
 	Delete rows from mysql based on a dictionary of data 
 	The keys must match the column names

@@ -3,14 +3,32 @@ def module_exists(module_name):
 	except ImportError: return False
 	else: return True
 
-import sys, json, os, pymysql, re, logging, pdb, pytz, requests, pickle, math, urllib.parse, asks, trio
-import subprocess, time, itertools, unicodedata, bs4
+import sys
+import json
+import os
+import pymysql
+import re
+import logging
+import pdb
+import pytz
+import requests
+import pickle
+import math
+import urllib.parse
+import asks
+import trio
+import subprocess
+import time
+import itertools
+import unicodedata
+import bs4
 from collections import Counter, defaultdict
 from enum import Enum, auto, IntEnum
 from datetime import timedelta, date, datetime
 from IPython.display import clear_output, Image, display
 from typing import List, Tuple, Dict
 from numbers import Number
+from pathlib import Path
 
 if module_exists("nbslack"):
 	import nbslack
@@ -20,8 +38,8 @@ else:
 	logging.warning('Unable to load slack webhook')
 	def notify(text=None): return
 
-asks.init('trio')
-print('1/6/21 dgnutils update loaded! Added more mysql db functions')
+# asks.init('trio')
+print('1/18/21 dgnutils update loaded! Added more store and overwrite db functions')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -58,7 +76,7 @@ def time_mailchimp_to_dt(time: str): return datetime.strptime(time, '%Y-%m-%d %H
 def time_mailchimp_to_ck(time: str): return datetime.strptime(time, '%Y-%m-%d %H:%M:%S').strftime('%Y-%m-%d')
 
 # UNIX TIME
-def time_current_unix(): return datetime_to_unix(datetime.now(tz=pytz.utc))
+def time_current_unix(): return time_dt_to_unix(datetime.now(tz=pytz.utc))
 def time_dt_to_unix(dt): 
 	if not dt.tzinfo: raise Exception("datetime must have tzinfo. Use datetime.now(tz=pytz.utc)")
 	return int(dt.astimezone(pytz.utc).timestamp())
@@ -66,23 +84,11 @@ def time_unix_to_dt(unix): return datetime.utcfromtimestamp(unix).replace(tzinfo
 def time_unix_to_str(unix, string_format="%Y-%m-%dT%H:%M:%S"): return datetime.strftime(datetime.utcfromtimestamp(unix).replace(tzinfo=pytz.utc), string_format)
 def time_str_to_unix(string, string_format="%Y-%m-%d"): 
 	""" Assumes that the string is local time """
-	return datetime_to_unix(datetime.strptime(string, string_format).astimezone(pytz.utc))
+	return time_dt_to_unix(datetime.strptime(string, string_format).astimezone(pytz.utc))
 
 def daterange(start_date, end_date):
 	for n in range(int ((end_date - start_date).days)):
 		yield start_date + timedelta(n)
-
-#Legacy
-def conv_time_1(time: str): logging.warning('conv_time_1 Deprecated; Use time_ck_to_dt'); return time_ck_to_dt(time);
-def days_ago(days=0): logging.warning('Deprecated; Use prefix time_'); return time_days_ago(days=days)
-def current_unix(): logging.warning('current_unix Deprecated; Use prefix time_'); return time_current_unix();
-def datetime_to_unix(dt): logging.warning('datetime_to_unix Deprecated; Use time_dt_to_unix'); return time_dt_to_unix(dt)
-def unix_to_datetime(unix): logging.warning('unix_to_datetime Deprecated; Use time_unit_to_dt'); return time_unix_to_dt(unix)
-def unix_to_string(unix, string_format="%Y-%m-%dT%H:%M:%S"): logging.warning('unix_to_string Deprecated; Use time_unix_to_str'); return time_unix_to_str(unix, string_format=string_format)
-def string_to_unix(string, string_format="%Y-%m-%d"): logging.warning('string_to_unix Deprecated; Use time_str_to_unix'); return time_str_to_unix(string, string_format=string_format)
-def created_to_dt(time: str): logging.warning('created_to_dt Deprecated; Use prefix time_'); return time_created_to_dt(time);
-def created_at_conv(time: str): logging.warning('created_at_conv Deprecated; Use time_created_to_ck'); return time_created_to_ck(time);
-def mailchimp_conv(time: str): logging.warning('mailchimp_conv Deprecated; Use time_ck_to_dt'); return time_mailchimp_to_ck
 
 ### Dictionary helpers
 def dict_head(dictionary, num_items): return {k:v for i,(k,v) in enumerate(dictionary.items()) if i < num_items}
@@ -115,23 +121,26 @@ def dgn_enum(_list:list):
 def get_json_columns(dict_, columns=["id"]):
 	return json.dumps({k:v for k,v in dict_.items() if k in columns})
 
+def pprint(v, indent=2):
+	print(json.dumps(v, indent=indent))
+
 def getInt(val, default=None):
-    """
-    try to get an int from val, return `default` if fails
-    """
-    try:
-        return int(val)
-    except ValueError as v:
-        return default
+	"""
+	try to get an int from val, return `default` if fails
+	"""
+	try:
+		return int(val)
+	except ValueError:
+		return default
 
 def getFloat(val, default=None):
-    """
-    try to get an float from val, return `default` if fails
-    """
-    try:
-        return float(val)
-    except ValueError as v:
-        return default
+	"""
+	try to get an float from val, return `default` if fails
+	"""
+	try:
+		return float(val)
+	except ValueError:
+		return default
 
 def permutations(l):
 	comb = []
@@ -144,6 +153,25 @@ def combinations(l):
 	for r in range(2,len(l)+1):
 		comb += list(itertools.combinations(l, r))
 	return comb
+
+def nested_update(d0, d1):
+	"""
+	Parameters
+		d0: the dictionary to update
+		d1: the dictionary values to update into d0
+	Returns
+		d0: The updated dictionary (it is also updated in place)
+	"""    
+	for k, v in d1.items():
+		if isinstance(v, dict):
+			d0[k] = nested_update(d0.get(k, {}), v)
+		else:
+			d0[k] = v
+	return d0
+	# a = {1:{2:{3}}}
+	# b = {1:{3:{4}}}
+	# c = nested_update(a, b)
+	# a,b,c
 
 # reExport = re.compile(r'^\s*export ([A-Z0-9_]+)=[\'\"](.*?)[\'\"]\s*$')
 reExport = re.compile(r'^[^#]*?export ([A-Z0-9_]+)=[\'\"](.*?)[\'\"]\s*$') # more clear check for comments
@@ -179,9 +207,9 @@ def connect(db = 'staging', **kwargs):
 	elif db in ['training', 'train', 'training_data']: database = 'training_data'
 	elif db in ['all', '', 'full', 'normal', 'etymology_explorer', 'live']: database = 'etymology_explorer'
 	else: database = db
-	user = os.environ['MYSQL_DB_USER'] if 'user' not in kwargs else kwargs['user']
-	password = os.environ['MYSQL_DB_PASSWORD'] if 'password' not in kwargs else kwargs['password']
-	host = os.environ['MYSQL_DB_HOST'] if 'host' not in kwargs else kwargs['host']
+	user = os.environ['RDS_ETY_USER'] if 'user' not in kwargs else kwargs['user']
+	password = os.environ['RDS_ETY_PASSWORD'] if 'password' not in kwargs else kwargs['password']
+	host = os.environ['RDS_ETY_HOST'] if 'host' not in kwargs else kwargs['host']
 	# user = os.environ['MYSQL_DB_USER'] if 'user' not in kwargs else kwargs['user']
 	# password = os.environ['MYSQL_DB_PASSWORD'] if 'password' not in kwargs else kwargs['password']
 	cursorclass = pymysql.cursors.Cursor if 'cursorclass' not in kwargs else kwargs['cursorclass'] #pymysql.cursors.DictCursor
@@ -229,27 +257,30 @@ def d(self, sql_stmt, values=None, many=False):
 pymysql.cursors.DictCursor.d = d
 pymysql.cursors.Cursor.d = d
 
-def dict_insert(self, data_list:list, table:str, batch_size:int=None):
+def dict_insert(self, data_list:list[dict], table:str, batch_size:int=None):
 	"""
-	Insert a dictionary of data into mysql. On duplicate update. The keys must match the column names. If a key is missing, the value defaults to None (NULL) in SQL
+	Insert a dictionary of data into mysql. 
+	Allows updates via (On duplicate update)
+	The keys must match the column names. If a key is missing, the value defaults to None (NULL) in SQL
 
 	Parameters
-	==========
-	data_list (list(dict)): Must provide a list of dictionaries, where the dict keys match the col names
-	table (str): the table to insert the data into
-	batch_size (int): the size of the batches to use. If None, then will execute as one action
+		data_list (list(dict)): Must provide a list of dictionaries, where the dict keys match the col names
+		table (str): the table to insert the data into
+		batch_size (int): the size of the batches to use. If None, then will execute as one action
 
 	Returns
-	=======
-	rows_updates (int): The number of rows updated
+		rows_updates (int): The number of rows updated
 	"""
 	# Should receive an array of dictionaries
 	if type(data_list) not in [list, tuple]: raise TypeError('dict_insert must receive a list of dictionaries')
+	if len(data_list) == 0: 
+		logging.warning('Nothing to insert!')
+		return
 	if type(data_list[0]) != dict: raise TypeError('dict_insert must receive a list of dictionaries')
 
 	# updated columns fn on 1-5-21 to allow different columns in each row
 	columns = list(set(k for e in data_list for k in list(e)))
-	values = [[d.get(c) for c in columns] for d in data_list]
+	values = [[data_item.get(c) for c in columns] for data_item in data_list]
 	column_string = ", ".join(["`"+col+"`" for col in columns])
 	variable_string = ", ".join(["%s"]*len(columns))
 	duplicate_string = f'ON DUPLICATE KEY UPDATE {", ".join(["`"+c+"`=VALUES(`"+c+"`)" for c in columns])}'
@@ -272,6 +303,51 @@ def dict_insert(self, data_list:list, table:str, batch_size:int=None):
 pymysql.cursors.DictCursor.dict_insert = dict_insert
 pymysql.cursors.Cursor.dict_insert = dict_insert
 
+def dict_delete(self, data_list:list[dict], table:str, batch_size:int=1000):
+	"""
+	Delete rows from mysql based on a dictionary of data 
+	The keys must match the column names
+
+	Parameters
+		data_list (list(dict)): Must provide a list of dictionaries, where the dict keys match the col names
+		table (str): the table to insert the data into
+		batch_size (int): default 1000, the size of the batches to use. If None, then will execute as one action
+
+	Returns
+		rows_updates (int): The number of rows deleted
+	"""
+	# Should receive an array of dictionaries
+	if type(data_list) not in [list, tuple]: raise TypeError('dict_insert must receive a list of dictionaries')
+	if len(data_list) == 0: 
+		logging.warning('Nothing to insert!')
+		return
+	if type(data_list[0]) != dict: raise TypeError('dict_delete must receive a list of dictionaries')
+
+	# updated columns fn on 1-5-21 to allow different columns in each row
+	columns = list(set(k for e in data_list for k in list(e)))
+	if any(set(data_item) != set(columns) for data_item in data_list):
+		raise Exception('All rows must have the same keys!')
+	column_string = " AND ".join(["`"+col+"`=%s" for col in columns])
+	values = [[data_item.get(c) for c in columns] for data_item in data_list]
+
+	# Prep and execute statement
+	sql_string = f'DELETE FROM {table} WHERE {column_string};'
+	logging.debug(f'dict_delete sql_string: {sql_string}')
+	logging.debug(f'dict_delete {len(values)} values: {str([v for v in values[:2]])[:50]}')
+
+	if not batch_size:
+		self.executemany(sql_string, values)
+	else:
+		batches = math.ceil(len(values) / batch_size)
+		logging.debug(f'number of batches: {batches}')
+		for i in range(batches):
+			logging.debug(f'in delete(), updating sql, iteration: {i}')
+			values_batch = values[i*batch_size:(i+1)*batch_size]
+			self.executemany(sql_string, values_batch)
+
+pymysql.cursors.DictCursor.dict_delete = dict_delete
+pymysql.cursors.Cursor.dict_delete = dict_delete
+
 def array_insert(self, data_list:list, columns:list, table:str):
 	"""
 	Insert an array of data into mysql. On duplicate update. The keys must match the column names. Uses dict_insert
@@ -288,13 +364,24 @@ def array_insert(self, data_list:list, columns:list, table:str):
 	# Should receive an array of dictionaries
 	if type(data_list) not in [list, tuple]: raise TypeError('array_insert must receive a list of lists. The parent element is not a list')
 	if type(data_list[0]) not in [list, tuple]: raise TypeError('array_insert must receive a list of lists. The child elements are not lists')
-	if not all(len(d) == len(columns) for d in data_list): raise AttributeError(f'column list len ({len(columns)}) must match each item in d ({len(data_list[0])})')
+	if not all(len(data_item) == len(columns) for data_item in data_list): raise AttributeError(f'column list len ({len(columns)}) must match each item in d ({len(data_list[0])})')
 	
-	data_list = [{c:d[i] for i,c in enumerate(columns)} for d in data_list]
+	data_list = [{c:data_item[i] for i,c in enumerate(columns)} for data_item in data_list]
 	return dict_insert(self, data_list, table)
 pymysql.cursors.DictCursor.array_insert = array_insert
 pymysql.cursors.Cursor.array_insert = array_insert
 
+def db(self):
+	""" check the current db via DATABASE() FROM DUAL """
+	return self.d('SELECT DATABASE() FROM DUAL')[0]['DATABASE()']
+pymysql.cursors.DictCursor.db = db
+pymysql.cursors.Cursor.db = db
+
+def cts(self, table):
+	""" check create table statement of a table """
+	print(self.d(f'SHOW CREATE TABLE {table}')[0]['Create Table'])
+pymysql.cursors.DictCursor.cts = cts
+pymysql.cursors.Cursor.cts = cts
 
 # SQL commands {{{
 
@@ -305,40 +392,11 @@ def execute_sql(cursor, sql):
 	# Show one line for logging.INFO and the full text for logging.DEBUG
 	if logging.getLogger().level == logging.DEBUG and len(debug_sql) > 80: 
 		debug_sql=debug_sql[:80]+'...'
-		logging.debug(f'Executing sql: {debug_sql}');
-	try:
-		cursor.execute(sql)
-		data = cursor.fetchall()
-	except mysql.connector.InternalError as ie:
-		logging.warning('Cursor already had content, trying to empty and then execute again')
-		cursor.fetchall()
-		cursor.execute(sql)
-		data = cursor.fetchall()
-		if hasattr(cursor, 'description'):
-			cursor.column_names = [t[0] for t in cursor.description]
-	return data
+		logging.debug(f'Executing sql: {debug_sql}')
 
-# Old method before 7-16-20
-# def insert(cursor, table, replace=False, ignore=False, many=False, batch_size=50000, **kwargs):
-#	insert = 'REPLACE' if replace else 'INSERT'
-#	ignore = 'IGNORE' if ignore else ''
-#	columns = [str(k) for k,v in kwargs.items()]
-#	col_text = '('+', '.join(columns)+')'
-#	val_text = ', '.join(['%s']*len(kwargs))
-#	sql_command = f'{insert} {ignore} INTO {table}{col_text} VALUES ({val_text})'
-# 
-#	if not many: #single insert
-#		values = list(kwargs.values())
-#		logging.debug(f'inserting {values} into {sql_command}')
-#		cursor.execute(sql_command, values)
-#	else: #multiple insert
-#		values = list(zip(*kwargs.values())) #get each crosssection of arrays
-#		batches = math.ceil(len(values) / batch_size)
-#		logging.debug(f'number of batches: {batches}')
-#		for i in range(batches):
-#			logging.debug(f'in insert(), updating sql, iteration: {i}')
-#			values_batch = values[i*batch_size:(i+1)*batch_size]
-#			cursor.executemany(sql_command, values_batch)
+	cursor.execute(sql)
+	data = cursor.fetchall()
+	return data
 
 def insert(cursor, table, replace=False, ignore=False, many=False, batch_size=50000, **kwargs):
 	# print(kwargs)
@@ -364,7 +422,7 @@ def insert(cursor, table, replace=False, ignore=False, many=False, batch_size=50
 
 def update(cursor, table, entry_id, **kwargs):		
 	update_text = ', '.join([k+'=%s' for k in kwargs])
-	sql_command = f'UPDATE {table} SET {update_text} WHERE entry_id={entry_id}'
+	sql_command = f'UPDATE {table} SET {update_text}'
 	values = list(kwargs.values())
 	logging.debug(f'updating: {sql_command} with {values}')
 	cursor.execute(sql_command, values)
@@ -420,7 +478,6 @@ def copy_tables(cursor, copy_from_database, copy_to_database=None, contents=[]):
 	database_in_use = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0]
 	if not copy_to_database:
 		copy_to_database = database_in_use
-	create_table_stmts=[]
 	cursor.e(f'DROP DATABASE IF EXISTS {copy_to_database}')
 	cursor.e(f'CREATE DATABASE {copy_to_database}')
 	tables = [d[0] for d in cursor.e(f'SHOW TABLES FROM {copy_from_database};')]
@@ -434,25 +491,27 @@ def copy_tables(cursor, copy_from_database, copy_to_database=None, contents=[]):
 			cursor.e(f'INSERT INTO {copy_to_database}.{table} SELECT * FROM {copy_from_database}.{table}')
 	cursor.e(f'USE {database_in_use}')
 
+def refresh_table(cursor, table:str, keep_contents=False):
+	if keep_contents:
+		data = cursor.d(f'SELECT * FROM {table}')
+	create_table_stmt = cursor.d(f'SHOW CREATE TABLE {table}')[0]['Create Table']
+	logging.debug(f'Recreating table {table}')
+	cursor.e(f'DROP TABLE IF EXISTS {table}')
+	cursor.e(create_table_stmt)
+	if keep_contents:
+		cursor.dict_insert(data, table)
+
 def refresh_tables(cursor, exclude:list, keep_contents=[]):
 	"""
 	drop all tables, except those included in `exclude`
 	Then reinstert them based on the `SHOW CREATE TABLE statements`
 	:param keep_contents: list of tables to copy over content as well
 	"""
-	create_table_stmts=[]
 	tables = [d[0] for d in cursor.e('SHOW TABLES;')]
 	logging.info(f'Recreating all tables EXCEPT {exclude}')
 	for table in tables:
 		if table in exclude: continue
-		if table in keep_contents:
-			data = cursor.d(f'SELECT * FROM {table}')
-		create_table_stmt = cursor.d(f'SHOW CREATE TABLE {table}')[0]['Create Table']
-		logging.debug(f'Recreating table {table}')
-		cursor.e(f'DROP TABLE IF EXISTS {table}')
-		cursor.e(create_table_stmt)
-		if table in keep_contents:
-			cursor.dict_insert(data, table)
+		refresh_tables(cursor, table, table in keep_contents)
 
 def restore_missing_tables(cursor, source_database):
 	"""
@@ -461,7 +520,7 @@ def restore_missing_tables(cursor, source_database):
 	"""
 	database_in_use = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0]
 	existing_tables = [t[0] for t in cursor.e('SHOW TABLES;')]
-	all_tables = [t[0] for t in cursor.e('SHOW TABLES FROM etymology_explorer_dev;')]
+	all_tables = [t[0] for t in cursor.e(f'SHOW TABLES FROM {source_database};')]
 	missing_tables = [t for t in all_tables if t not in existing_tables]
 	for table in missing_tables:
 		create_table_stmt = cursor.d(f'SHOW CREATE TABLE {source_database}.{table}')[0]['Create Table']
@@ -482,20 +541,53 @@ def close_connections(cursor, db_name):
 		cursor.e(sql_stmt)
 	logging.info(f'Closed {len(sql_stmts)} connections to {db_name}')
 
-def compare_databases(cursor, database0, database1):
+def mysql_create_table_stmts(cursor, db:str):
+	"""
+	Get create table statement from a database
+	Returns:
+		stmts: dict {table: stmt, table2: stmt2, ...}
+	"""
+	create_table_stmts={}
+	tables = [d[0] for d in cursor.e(f'SHOW TABLES FROM {db};')]
+	for table in tables:
+		create_table_stmts[table] = cursor.d(f'SHOW CREATE TABLE {db}.{table}')[0]['Create Table'].split('\n')
+	return create_table_stmts
+
+def mysql_compare_create_table_stmts(
+		cursor, 
+		stmts0:'dict[table:stmt]', 
+		stmts1:'dict[table:stmt]', 
+		name0:str='database0',
+		name1:str='database1',
+	):
 	"""
 	See the differences between databases in table structure
+	Parameters
+		name0: name of the first database
+		name1: name of the second database
+	Return
+		databases_extras (dict): dict containing the extras that a database HAS
+		{ 
+			database0:{ 
+				table1:[line1, line2] ,
+				table2:[] #entire table 
+			}
+			database1:{ 
+				table3:[] 
+			}
+		}
 	"""
-	name0 = ''.join([d for i,d in enumerate(database0) if len(database1) > i and database1[i] != d])
-	name1 = ''.join([d for i,d in enumerate(database1) if len(database0) > i and database0[i] != d])
-	create_table_stmts={0:{}, 1:{}}
-	for i,db in enumerate([database0, database1]):
-		tables = [d[0] for d in cursor.e(f'SHOW TABLES FROM {db};')]
-		for table in tables:
-			create_table_stmts[i][table] = cursor.d(f'SHOW CREATE TABLE {db}.{table}')[0]['Create Table'].split('\n')
-			
+	database_differences = {name0:{},name1:{}}
+	create_table_stmts={0:stmts0, 1:stmts1}
+
 	only_db_0_tables = list(set(create_table_stmts[0]) - set(create_table_stmts[1]))
 	only_db_1_tables = list(set(create_table_stmts[1]) - set(create_table_stmts[0]))
+
+	for table in only_db_0_tables:
+		database_differences[name0][table]=[]
+	for table in only_db_1_tables:
+		database_differences[name1][table]=[]
+
 	print(color(f'"{name0}"-only tables {only_db_0_tables}', 'purple_light'))
 	print(color(f'"{name1}"-only tables {only_db_1_tables}', 'blue_light'))
 	print()
@@ -506,10 +598,123 @@ def compare_databases(cursor, database0, database1):
 			print(f'"{table}" differences')
 			for line in create_table_stmts[0][table]:
 				if line not in create_table_stmts[1][table]:
+					database_differences[name0].setdefault(table,[]).append(line)
 					print(color(f'{name0}: {line}', 'purple_light'))
 			for line in create_table_stmts[1][table]:
 				if line not in create_table_stmts[0][table]:
+					database_differences[name1].setdefault(table,[]).append(line)
 					print(color(f'{name1}: {line}', 'blue_light'))
 			print()
+	return database_differences
+
+def compare_databases(
+		cursor, 
+		database0:str, 
+		database1:str, 
+		create_table_stmts_override:dict={}, 
+	):
+	"""
+	See the differences between databases in table structure
+	Parameters
+		database0: name of the first database
+		database1: name of the second database
+		create_table_stmts_override: optional dict of create_table_stmts to override, 
+		updates the default by nested_update
+			{0: {table: CREATE TABLE stmt}, ..., 1: {} }
+	Return
+		databases_extras (dict): dict containing the extras that a database HAS
+		{ 
+			database0:{ 
+				table1:[line1, line2] ,
+				table2:[] #entire table 
+			}
+			database1:{ 
+				table3:[] 
+			}
+		}
+	"""
+	database_differences = {database0:{},database1:{}}
+	name0 = ''.join([d for i,d in enumerate(database0) if len(database1) > i and database1[i] != d])
+	name1 = ''.join([d for i,d in enumerate(database1) if len(database0) > i and database0[i] != d])
+	create_table_stmts={0:{}, 1:{}}
+	for i,db in enumerate(d for d in [database0, database1] if d):
+		tables = [d[0] for d in cursor.e(f'SHOW TABLES FROM {db};')]
+		for table in tables:
+			create_table_stmts[i][table] = cursor.d(f'SHOW CREATE TABLE {db}.{table}')[0]['Create Table'].split('\n')
+
+	create_table_stmts = nested_update(create_table_stmts, create_table_stmts_override)
+
+	only_db_0_tables = list(set(create_table_stmts[0]) - set(create_table_stmts[1]))
+	only_db_1_tables = list(set(create_table_stmts[1]) - set(create_table_stmts[0]))
+
+	for table in only_db_0_tables:
+		database_differences[database0][table]=[]
+	for table in only_db_1_tables:
+		database_differences[database1][table]=[]
+
+	print(color(f'"{name0}"-only tables {only_db_0_tables}', 'purple_light'))
+	print(color(f'"{name1}"-only tables {only_db_1_tables}', 'blue_light'))
+	print()
+		
+	matching_tables = set(create_table_stmts[0]) & set(create_table_stmts[1])
+	for table in matching_tables:
+		if create_table_stmts[0][table] != create_table_stmts[1][table]:
+			print(f'"{table}" differences')
+			for line in create_table_stmts[0][table]:
+				if line not in create_table_stmts[1][table]:
+					database_differences[database0].setdefault(table,[]).append(line)
+					print(color(f'{name0}: {line}', 'purple_light'))
+			for line in create_table_stmts[1][table]:
+				if line not in create_table_stmts[0][table]:
+					database_differences[database1].setdefault(table,[]).append(line)
+					print(color(f'{name1}: {line}', 'blue_light'))
+			print()
+	return database_differences
+
+def store_database_structure(cursor, path=None):
+	if not path:
+		path = Path(os.environ['ETY_BACKEND_PATH'])/'data'/'wiktionary'/'table_structure.mysql'
+	
+	with open(path, 'w+') as f:
+		database_in_use = cursor.e('SELECT DATABASE() FROM DUAL;')[0][0]
+		tables = [d[0] for d in cursor.e(f'SHOW TABLES FROM {database_in_use};')]
+		logging.debug(f'writing tables {tables}')
+		create_table_stmts = [cursor.d(f'SHOW CREATE TABLE {database_in_use}.{table}')[0]['Create Table'] for table in tables]
+		f.write('\n'.join(create_table_stmts))
+		logging.info(f'Wrote {database_in_use} structure to {path}')
+
+def overwrite_database_structure(cursor, path=None):
+	database_in_use = cursor.db()
+	if input(f'This will overwrite {database_in_use}, continue? [y/N]') != 'y': raise Exception()
+	logging.info(f'Dropping database {database_in_use}')
+	cursor.e(f'DROP DATABASE {database_in_use}')
+	cursor.e(f'CREATE DATABASE {database_in_use}')
+	cursor.e(f'USE {database_in_use}')
+
+	create_table_stmts = load_create_table_commands_from_structure_file(path=path)
+	for create_table_stmt in create_table_stmts.values():
+		cursor.e(''.join(create_table_stmt))
+
+RE_TABLE_NAME = r"CREATE +TABLE +`?(\w+)`? +\("
+def load_create_table_commands_from_structure_file(path=None):
+	""" load table_structure.mysql into a list of create table commands """
+	create_table_stmts={}
+	if not path:
+		path = Path(os.environ['ETY_BACKEND_PATH'])/'data'/'wiktionary'/'table_structure.mysql'
+	with open(path, 'r') as f:
+		create_table_cmd = []
+		for line in f.readlines():
+			line = line.rstrip()
+			match = re.match(RE_TABLE_NAME, line)
+			if match and create_table_cmd:
+				create_table_stmts[table] = create_table_cmd 
+				table = match.group(1) # Actually is the NEXT table
+				create_table_cmd = [line]
+			else:
+				create_table_cmd.append(line)
+				if match:
+					table = match.group(1) # Actually is the NEXT table
+		create_table_stmts[table] = create_table_cmd 
+	return create_table_stmts
 
 # MYSQL Functions }}}

@@ -22,6 +22,7 @@ import time
 import itertools
 import unicodedata
 import bs4
+import random
 from collections import Counter, defaultdict
 from enum import Enum, auto, IntEnum
 from datetime import timedelta, date, datetime
@@ -49,6 +50,12 @@ print('1/18/21 dgnutils update loaded! Added more store and overwrite db functio
 #########################################  
 ########### UTILITY FUNCTIONS ###########
 #########################################
+
+def shuffle_return(l:list):
+	""" shuffles list in place and returns it"""
+	if type(l) != list: raise Exception('Must provide a list!')
+	random.shuffle(l)
+	return l
 
 def color(text, color):
 	e = '\x1b[0m'
@@ -207,9 +214,9 @@ def connect(db = 'staging', **kwargs):
 	elif db in ['training', 'train', 'training_data']: database = 'training_data'
 	elif db in ['all', '', 'full', 'normal', 'etymology_explorer', 'live']: database = 'etymology_explorer'
 	else: database = db
-	user = os.environ['RDS_ETY_USER'] if 'user' not in kwargs else kwargs['user']
-	password = os.environ['RDS_ETY_PASSWORD'] if 'password' not in kwargs else kwargs['password']
-	host = os.environ['RDS_ETY_HOST'] if 'host' not in kwargs else kwargs['host']
+	user = os.environ['ETY_USER'] if 'user' not in kwargs else kwargs['user']
+	password = os.environ['ETY_PASSWORD'] if 'password' not in kwargs else kwargs['password']
+	host = os.environ['ETY_HOST'] if 'host' not in kwargs else kwargs['host']
 	# user = os.environ['MYSQL_DB_USER'] if 'user' not in kwargs else kwargs['user']
 	# password = os.environ['MYSQL_DB_PASSWORD'] if 'password' not in kwargs else kwargs['password']
 	cursorclass = pymysql.cursors.Cursor if 'cursorclass' not in kwargs else kwargs['cursorclass'] #pymysql.cursors.DictCursor
@@ -420,7 +427,7 @@ def insert(cursor, table, replace=False, ignore=False, many=False, batch_size=50
 			values_batch = values[i*batch_size:(i+1)*batch_size]
 			cursor.executemany(sql_command, values_batch)
 
-def update(cursor, table, entry_id, **kwargs):		
+def update(cursor, table, **kwargs):		
 	update_text = ', '.join([k+'=%s' for k in kwargs])
 	sql_command = f'UPDATE {table} SET {update_text}'
 	values = list(kwargs.values())
@@ -501,7 +508,7 @@ def refresh_table(cursor, table:str, keep_contents=False):
 	if keep_contents:
 		cursor.dict_insert(data, table)
 
-def refresh_tables(cursor, exclude:list, keep_contents=[]):
+def refresh_tables(cursor, exclude:list, keep_contents:'list or boolean'=[]):
 	"""
 	drop all tables, except those included in `exclude`
 	Then reinstert them based on the `SHOW CREATE TABLE statements`
@@ -511,7 +518,7 @@ def refresh_tables(cursor, exclude:list, keep_contents=[]):
 	logging.info(f'Recreating all tables EXCEPT {exclude}')
 	for table in tables:
 		if table in exclude: continue
-		refresh_tables(cursor, table, table in keep_contents)
+		refresh_table(cursor, table, keep_contents == True or table in keep_contents)
 
 def restore_missing_tables(cursor, source_database):
 	"""
@@ -683,11 +690,18 @@ def store_database_structure(cursor, path=None):
 		f.write('\n'.join(create_table_stmts))
 		logging.info(f'Wrote {database_in_use} structure to {path}')
 
-def overwrite_database_structure(cursor, path=None):
+def overwrite_database_structure(cursor, database, path=None):
+	"""
+	"""
 	database_in_use = cursor.db()
-	if input(f'This will overwrite {database_in_use}, continue? [y/N]') != 'y': raise Exception()
+	if database_in_use and database != database_in_use:
+		raise Exception(f'Unsure which database to reset! {database} given, {database_in_use} in use')
+	elif not database_in_use:
+		database_in_use = database
+		print(f'No database in use. Using given {database}')
+	if input(f'This will overwrite database: {database_in_use}, continue? [y/N]') != 'y': raise Exception()
 	logging.info(f'Dropping database {database_in_use}')
-	cursor.e(f'DROP DATABASE {database_in_use}')
+	cursor.e(f'DROP DATABASE IF EXISTS {database_in_use}')
 	cursor.e(f'CREATE DATABASE {database_in_use}')
 	cursor.e(f'USE {database_in_use}')
 

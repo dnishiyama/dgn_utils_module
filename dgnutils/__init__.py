@@ -23,6 +23,7 @@ import itertools
 import unicodedata
 import bs4
 import random
+import warnings
 from collections import Counter, defaultdict
 from enum import Enum, auto, IntEnum
 from datetime import timedelta, date, datetime
@@ -140,7 +141,7 @@ def getInt(val, default=None):
 	"""
 	try:
 		return int(val)
-	except ValueError:
+	except (ValueError, TypeError):
 		return default
 
 def getFloat(val, default=None):
@@ -284,7 +285,7 @@ def dict_insert(self, data_list:'list[dict]', table:str, batch_size:int=None):
 	# Should receive an array of dictionaries
 	if type(data_list) not in [list, tuple]: raise TypeError('dict_insert must receive a list of dictionaries')
 	if len(data_list) == 0: 
-		logging.warning('Nothing to insert!')
+		warnings.warn('Nothing to insert in dict_insert!')
 		return
 	if type(data_list[0]) != dict: raise TypeError('dict_insert must receive a list of dictionaries')
 

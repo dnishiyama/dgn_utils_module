@@ -40,7 +40,7 @@ else:
 	def notify(text=None): return
 
 # asks.init('trio')
-print('1/18/21 dgnutils update loaded! Added more store and overwrite db functions')
+print('3/6/21 dgnutils update loaded! Added seed option for shuffle return')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -51,10 +51,13 @@ print('1/18/21 dgnutils update loaded! Added more store and overwrite db functio
 ########### UTILITY FUNCTIONS ###########
 #########################################
 
-def shuffle_return(l:list):
+def shuffle_return(l:list, seed=None):
 	""" shuffles list in place and returns it"""
 	if type(l) != list: raise Exception('Must provide a list!')
-	random.shuffle(l)
+	if seed != None:
+		random.Random(seed).shuffle(l)
+	else:
+		random.shuffle(l)
 	return l
 
 def color(text, color):
@@ -428,6 +431,7 @@ def insert(cursor, table, replace=False, ignore=False, many=False, batch_size=50
 			cursor.executemany(sql_command, values_batch)
 
 def update(cursor, table, **kwargs):		
+	raise Exception('not sure this works, do I need a WHERE clause?')
 	update_text = ', '.join([k+'=%s' for k in kwargs])
 	sql_command = f'UPDATE {table} SET {update_text}'
 	values = list(kwargs.values())

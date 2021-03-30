@@ -41,7 +41,7 @@ else:
 	def notify(text=None): return
 
 # asks.init('trio')
-print('3/6/21 dgnutils update loaded! Added seed option for shuffle return')
+print('3/30/21 dgnutils update loaded! Timestamp functions')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -96,6 +96,16 @@ def time_unix_to_str(unix, string_format="%Y-%m-%dT%H:%M:%S"): return datetime.s
 def time_str_to_unix(string, string_format="%Y-%m-%d"): 
 	""" Assumes that the string is local time """
 	return time_dt_to_unix(datetime.strptime(string, string_format).astimezone(pytz.utc))
+def time_str_to_s_ts(string, string_format="%Y-%m-%d"): 
+	return time_dt_to_unix(datetime.strptime(string, string_format).astimezone(pytz.utc))
+def time_str_to_ms_ts(string, string_format="%Y-%m-%d"): 
+	return time_dt_to_unix(datetime.strptime(string, string_format).astimezone(pytz.utc))*1000
+def time_ts_to_str(ts):
+	""" handles ms or s """
+	if ts > 253402300799: ts /= 1000
+	return time_unix_to_str(ts)
+
+
 
 def daterange(start_date, end_date):
 	for n in range(int ((end_date - start_date).days)):

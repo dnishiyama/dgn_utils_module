@@ -41,7 +41,7 @@ else:
 	def notify(text=None): return
 
 # asks.init('trio')
-print('3/6/21 dgnutils update loaded! Added seed option for shuffle return')
+print('3/17/21 dgnutils update loaded! Added Timer')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -737,3 +737,21 @@ def load_create_table_commands_from_structure_file(path=None):
 	return create_table_stmts
 
 # MYSQL Functions }}}
+
+class Timer(object):
+	"""
+	Class to time
+	"""
+	def __init__( self ):
+		self.start_times = {}
+		self.time_accumulations = {}
+
+	def start(self, category):
+		self.start_times[category] = time.time()
+
+	def end(self, category):
+		self.time_accumulations.setdefault(category, 0)
+		self.time_accumulations[category] += time.time() - self.start_times[category]
+
+	def log(self):
+		return ', '.join(f"{k}:{round(v,1)}" for k,v in self.time_accumulations.items())

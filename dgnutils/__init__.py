@@ -41,7 +41,7 @@ else:
 	def notify(text=None): return
 
 # asks.init('trio')
-print('3/30/21 dgnutils update loaded! Timestamp functions')
+print('4/9/21 dgnutils update loaded! New dictionary helpers')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -112,7 +112,14 @@ def daterange(start_date, end_date):
 		yield start_date + timedelta(n)
 
 ### Dictionary helpers
-def dict_head(dictionary, num_items): return {k:v for i,(k,v) in enumerate(dictionary.items()) if i < num_items}
+def dict_head(dictionary, num_items): 
+	return {k:v for i,(k,v) in enumerate(dictionary.items()) if i < num_items}
+
+def first_value(dictionary, none_item=None): 
+	return next(iter(dictionary.values()), none_item)
+
+def first_key(dictionary, none_item=None): 
+	return next(iter(dictionary.keys()), none_item)
 
 # }}} Utility Function
 

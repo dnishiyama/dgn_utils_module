@@ -41,7 +41,7 @@ else:
 	def notify(text=None): return
 
 # asks.init('trio')
-print('4/9/21 dgnutils update loaded! New dictionary helpers')
+print('4/10/21 dgnutils update loaded! New dictionary helpers')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -772,3 +772,14 @@ class Timer(object):
 
 	def log(self):
 		return ', '.join(f"{k}:{round(v,1)}" for k,v in self.time_accumulations.items())
+
+
+# Firebase utilities
+def fb_date(fb_data:dict):
+    """ Firebase convert a normal dict into readable dates"""
+    for k,v in fb_data.items():
+        if type(v) == dict:
+            fb_data[k] = fb_date(v)
+        elif type(v) == int and v > 1000000000:
+            fb_data[k] = time_ts_to_str(v)
+    return fb_data

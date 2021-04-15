@@ -41,7 +41,7 @@ else:
 	def notify(text=None): return
 
 # asks.init('trio')
-print('4/10/21 dgnutils update loaded! New dictionary helpers')
+print('4/15/21 dgnutils update loaded! Improved connect')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -231,11 +231,12 @@ def test_extract_sh_exports():
 #########################################
 
 def connect(db = 'staging', **kwargs):
-	if db in ['test', 'testing']: database = 'etymology_explorer_test'
+	if db in ['backup', 'back']: database = 'etymology_explorer_backup'
+	elif db in ['training', 'train']: database = 'training_data'
+	elif db in ['test', 'testing']: database = 'etymology_explorer_test'
 	elif db in ['development', 'dev']: database = 'etymology_explorer_dev'
 	elif db in ['staging', 'stage']: database = 'etymology_explorer_staging'
 	elif db in ['prod', 'production']: database = 'etymology_explorer_prod'
-	elif db in ['training', 'train']: database = 'training_data'
 	else: database = db
 	user = os.environ['ETY_USER'] if 'user' not in kwargs else kwargs['user']
 	password = os.environ['ETY_PASSWORD'] if 'password' not in kwargs else kwargs['password']

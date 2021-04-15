@@ -231,9 +231,11 @@ def test_extract_sh_exports():
 #########################################
 
 def connect(db = 'staging', **kwargs):
-	if db in ['staging', 'stage', 'etymology_explorer_staging']: database = 'etymology_explorer_staging'
-	elif db in ['training', 'train', 'training_data']: database = 'training_data'
-	elif db in ['all', '', 'full', 'normal', 'etymology_explorer', 'live']: database = 'etymology_explorer'
+	if db in ['test', 'testing']: database = 'etymology_explorer_test'
+	elif db in ['development', 'dev']: database = 'etymology_explorer_dev'
+	elif db in ['staging', 'stage']: database = 'etymology_explorer_staging'
+	elif db in ['prod', 'production']: database = 'etymology_explorer_prod'
+	elif db in ['training', 'train']: database = 'training_data'
 	else: database = db
 	user = os.environ['ETY_USER'] if 'user' not in kwargs else kwargs['user']
 	password = os.environ['ETY_PASSWORD'] if 'password' not in kwargs else kwargs['password']
@@ -307,7 +309,14 @@ def dict_insert(self, data_list:'list[dict]', table:str, batch_size:int=None):
 	if type(data_list[0]) != dict: raise TypeError('dict_insert must receive a list of dictionaries')
 
 	# updated columns fn on 1-5-21 to allow different columns in each row
-	columns = list(set(k for e in data_list for k in list(e)))
+	fields = set(c['Field'] for c in self.d(f'DESCRIBE {table}'))
+	columns = set(k for e in data_list for k in list(e))
+	unused_columns = columns - fields
+	if unused_columns:
+		print('columns:', columns)
+		print('fields:', fields)
+		print('unused_columns:', unused_columns)
+		raise Exception(f'Cannot dict_insert with unused columns: {unused_columns}')
 	values = [[data_item.get(c) for c in columns] for data_item in data_list]
 	column_string = ", ".join(["`"+col+"`" for col in columns])
 	variable_string = ", ".join(["%s"]*len(columns))

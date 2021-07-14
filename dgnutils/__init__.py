@@ -41,7 +41,7 @@ else:
 	def notify(text=None): return
 
 # asks.init('trio')
-print('4/15/21 dgnutils update loaded! Improved connect')
+print('7/14/21 dgnutils update loaded! Added getPop')
 
 # Use "python setup.py develop" in the directory to use conda develop to manage this file
 
@@ -169,6 +169,12 @@ def getFloat(val, default=None):
 		return float(val)
 	except ValueError:
 		return default
+
+def getPop(val, default=None):
+	"""
+	Try to use next(iter(val, default)) on a list
+	"""
+	return next(iter(val), default)
 
 def permutations(l):
 	comb = []
